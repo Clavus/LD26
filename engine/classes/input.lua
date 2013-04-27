@@ -51,7 +51,7 @@ function InputController:handle_keypressed(key, unicode)
 	
 	--print("key "..key.." pressed "..tostring(unicode))
 	self._keyspressed[key] = true
-	self._keysdown[key] = { time = love.currentTime() }
+	self._keysdown[key] = { time = engine.currentTime() }
 	
 	if (self._keypresscalls[key]) then
 		for k, v in pairs(self._keypresscalls[key]) do
@@ -68,7 +68,7 @@ function InputController:handle_keyreleased(key, unicode)
 	
 	if (self._keyreleasecalls[key]) then
 		for k, v in pairs(self._keyreleasecalls[key]) do
-			v.func(key, love.currentTime() - self._keysdown[key].time)
+			v.func(key, engine.currentTime() - self._keysdown[key].time)
 		end
 	end
 	
@@ -79,7 +79,7 @@ end
 function InputController:handle_mousepressed(x, y, button)
 	
 	self._mousepressed[button] = true
-	self._mousedown[button] = { x = x, y = y, time = love.currentTime() }
+	self._mousedown[button] = { x = x, y = y, time = engine.currentTime() }
 	
 	if (self._mousepresscalls[button]) then
 		for k, v in pairs(self._mousepresscalls[button]) do
@@ -95,7 +95,7 @@ function InputController:handle_mousereleased(x, y, button)
 	
 	if (self._mousereleasecalls[button]) then
 		for k, v in pairs(self._mousereleasecalls[button]) do
-			v.func(x, y, love.currentTime() - self._mousedown[button].time)
+			v.func(x, y, engine.currentTime() - self._mousedown[button].time)
 		end
 	end
 	

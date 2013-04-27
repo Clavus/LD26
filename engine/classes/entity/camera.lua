@@ -14,8 +14,8 @@ end
 function Camera:update(dt)
 	
 	--self._pos.x = self._pos.x + 50*dt
-	--self._scale.x = 1 + 0.5*math.sin(love.currentTime())
-	--self._scale.y = 1 + 0.5*math.sin(love.currentTime())
+	--self._scale.x = 1 + 0.5*math.sin(engine.currentTime())
+	--self._scale.y = 1 + 0.5*math.sin(engine.currentTime())
 	
 end
 

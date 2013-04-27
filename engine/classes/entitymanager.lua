@@ -23,7 +23,7 @@ end
 function EntityManager:createEntity( class, ...)
 	
 	local ent
-	if (_G[class]) then
+	if (_G[class] and subclassOf(Entity, _G[class])) then
 		ent = _G[class](...)
 	end
 	

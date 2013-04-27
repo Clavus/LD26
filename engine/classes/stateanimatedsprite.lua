@@ -1,12 +1,12 @@
 
-CharacterSprite = class("CharacterSprite")
+StateAnimatedSprite = class("StateAnimatedSprite")
 
 --[[
-void CharacterSprite:setState( state )
-void CharacterSprite:setSpeed( speed )
-void CharacterSprite:resetAnimation()
-void CharacterSprite:update( dt )
-void CharacterSprite:draw(x, y, r, sx, sy)
+void StateAnimatedSprite:setState( state )
+void StateAnimatedSprite:setSpeed( speed )
+void StateAnimatedSprite:resetAnimation()
+void StateAnimatedSprite:update( dt )
+void StateAnimatedSprite:draw(x, y, r, sx, sy)
 
 Layout format example:
 
@@ -25,7 +25,7 @@ layout = {
 }
 ]]--
 
-function CharacterSprite:initialize( layout, image_file, img_offset, frame_size, frame_origin )
+function StateAnimatedSprite:initialize( layout, image_file, img_offset, frame_size, frame_origin )
 	
 	self._sprites = {}
 	self._state = ""
@@ -38,7 +38,7 @@ function CharacterSprite:initialize( layout, image_file, img_offset, frame_size,
 	
 end
 
-function CharacterSprite:setState( state, reapply )
+function StateAnimatedSprite:setState( state, reapply )
 	
 	if (self._sprites[state] and not (not reapply and state == self._state)) then
 		self._sprites[state]:reset()
@@ -48,7 +48,7 @@ function CharacterSprite:setState( state, reapply )
 	
 end
 
-function CharacterSprite:setSpeed( speed )
+function StateAnimatedSprite:setSpeed( speed )
 
 	self._speed = speed
 	if (self._sprites[self._state]) then
@@ -57,7 +57,7 @@ function CharacterSprite:setSpeed( speed )
 	
 end
 
-function CharacterSprite:resetAnimation()
+function StateAnimatedSprite:resetAnimation()
 	
 	if (self._sprites[self._state]) then
 		self._sprites[self._state]:reset()
@@ -65,7 +65,7 @@ function CharacterSprite:resetAnimation()
 	
 end
 
-function CharacterSprite:update( dt )
+function StateAnimatedSprite:update( dt )
 	
 	if (self._sprites[self._state]) then
 		self._sprites[self._state]:update( dt )
@@ -73,7 +73,7 @@ function CharacterSprite:update( dt )
 	
 end
 
-function CharacterSprite:draw(x, y, r, sx, sy)
+function StateAnimatedSprite:draw(x, y, r, sx, sy)
 	
 	if (self._sprites[self._state]) then
 		self._sprites[self._state]:draw( x, y, r, sx, sy )

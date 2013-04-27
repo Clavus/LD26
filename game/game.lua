@@ -3,6 +3,7 @@ require("game/input_constants")
 require("game/sprite_layouts")
 
 require("game/classes/rpgplayer")
+require("game/classes/zombie")
 
 local level, player
 
@@ -47,6 +48,11 @@ function game.createLevelEntity( level, entData )
 	elseif entData.type == "Player" then
 		
 		ent = level:createEntity("RPGPlayer", level:getPhysicsWorld())
+		ent:setPos(Vector(entData.x, entData.y))
+		
+	elseif entData.type == "Zombie" then
+		
+		ent = level:createEntity("Zombie", level:getPhysicsWorld())
 		ent:setPos(Vector(entData.x, entData.y))
 		
 	end

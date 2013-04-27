@@ -1,5 +1,6 @@
 
 game = {}
+engine = {}
 require("engine/engine")
 require("game/game")
 
@@ -60,7 +61,7 @@ function love.quit()
 
 end
 
-function love.currentTime()
+function engine.currentTime()
 	
 	return _curTime
 	

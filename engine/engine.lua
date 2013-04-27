@@ -2,7 +2,7 @@
 require("engine/lib/middleclass/middleclass")
 
 require("engine/constants")
-require("engine/resources")
+require("engine/resource")
 
 require("engine/extend/math")
 require("engine/extend/table")
@@ -13,7 +13,7 @@ require("engine/util/util")
 require("engine/classes/vector")
 require("engine/classes/sprite")
 require("engine/classes/spritedata")
-require("engine/classes/charactersprite")
+require("engine/classes/stateanimatedsprite")
 require("engine/classes/input")
 require("engine/classes/leveldata")
 require("engine/classes/tiledleveldata")
