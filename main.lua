@@ -30,25 +30,25 @@ end
 
 function love.mousepressed(x, y, button)
 	
-	input:mousepressed(x,y,button)
+	input:handle_mousepressed(x,y,button)
 	
 end
 
 function love.mousereleased(x, y, button)
 	
-	input:mousereleased(x,y,button)
+	input:handle_mousereleased(x,y,button)
 	
 end
 
 function love.keypressed(key, unicode)
 	
-	input:keypressed(key, unicode)
+	input:handle_keypressed(key, unicode)
 	
 end
 
 function love.keyreleased(key, unicode)
 	
-	input:keyreleased(key, unicode)
+	input:handle_keyreleased(key, unicode)
 	
 end
 

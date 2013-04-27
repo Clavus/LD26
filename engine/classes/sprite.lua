@@ -13,6 +13,8 @@ function Sprite:initialize( sData )
 	self._cur_frame = 1
 	self._ended = false
 	
+	self._speed = 1
+	
 	self.visible = true
 	
 	local quads = {}
@@ -20,9 +22,10 @@ function Sprite:initialize( sData )
 	local row = 0
 	local fw, fh = self._size.x, self._size.y
 	local img = self._image
+	local offset = self._offset
 	
 	for i = 1, self._num_frames do
-		table.insert(quads, love.graphics.newQuad(col*fw, row*fh, fw, fh, img:getWidth(), img:getHeight()))
+		table.insert(quads, love.graphics.newQuad(offset.x + col*fw, offset.y + row*fh, fw, fh, img:getWidth(), img:getHeight()))
 		col = col + 1
 		if (col >= sData.num_columns) then
 			col = 0
@@ -36,18 +39,27 @@ end
 
 function Sprite:update( dt )
 
-	if (self._num_frames > 1 and self._fps ~= 0 and not self._ended) then
-		self._cur_frame = self._cur_frame + (dt * self._fps)
+	if (self._num_frames > 1 and self._fps * self._speed ~= 0 and not self._ended) then
+		self._cur_frame = self._cur_frame + (dt * self._fps * self._speed)
 		
-		if (self._cur_frame >= self._num_frames+1) then
+		if (self._cur_frame >= self._num_frames + 1) then
 			if (self._loops) then
 				self._cur_frame = 1
 			else
 				self._cur_frame = self._num_frames
 				self._ended = true
 			end
+		elseif (self._cur_frame < 0) then
+			self._cur_frame = self._num_frames + 1 + self._cur_frame 
 		end
+		
 	end
+
+end
+
+function Sprite:setSpeed( scalar )
+
+	self._speed = scalar
 
 end
 
@@ -64,6 +76,13 @@ function Sprite:draw(x, y, r, sx, sy)
 
 end
 
+function Sprite:reset()
+	
+	self._cur_frame = 1
+	self._speed = 1
+	self._ended = false
+	
+end
 
 function Sprite:getCurrentFrame()
 	

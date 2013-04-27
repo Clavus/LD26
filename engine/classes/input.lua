@@ -1,10 +1,15 @@
+
+InputController = class("InputController")
+
 --[[
 Input controller
 
-bool InputController:keyWasPressed(key)
-bool InputController:keyWasReleased(key)
-bool InputController:mouseWasPressed(button)
-bool InputController:mouseWasReleased(button)
+bool InputController:keyIsPressed(key)
+bool InputController:keyIsReleased(key)
+bool InputController:mouseIsPressed(button)
+bool InputController:mouseIsReleased(button)
+bool InputController:keyIsDown(key)
+bool InputController:mouseIsDown(button)
 
 void InputController:addKeyPressCallback(id, key, func) -- callback = func(key)
 void InputController:addKeyReleaseCallback(id, key, func) -- callback = func(key, timediff)
@@ -16,8 +21,6 @@ void InputController:removeKeyReleaseCallback(id)
 void InputController:removeMousePressCallback(id)
 void InputController:removeMouseReleaseCallback(id)
 ]]--
-
-InputController = class("InputController")
 
 function InputController:initialize()
 	
@@ -44,7 +47,7 @@ function InputController:clear()
 	
 end
 
-function InputController:keypressed(key, unicode)
+function InputController:handle_keypressed(key, unicode)
 	
 	--print("key "..key.." pressed "..tostring(unicode))
 	self._keyspressed[key] = true
@@ -58,7 +61,7 @@ function InputController:keypressed(key, unicode)
 	
 end
 
-function InputController:keyreleased(key, unicode)
+function InputController:handle_keyreleased(key, unicode)
 
 	--print("key "..key.." released "..tostring(unicode))
 	self._keysreleased[key] = false
@@ -73,7 +76,7 @@ function InputController:keyreleased(key, unicode)
 	
 end
 
-function InputController:mousepressed(x, y, button)
+function InputController:handle_mousepressed(x, y, button)
 	
 	self._mousepressed[button] = true
 	self._mousedown[button] = { x = x, y = y, time = love.currentTime() }
@@ -86,7 +89,7 @@ function InputController:mousepressed(x, y, button)
 	
 end
 
-function InputController:mousereleased(x, y, button)
+function InputController:handle_mousereleased(x, y, button)
 	
 	self._mousereleased[button] = true
 	
@@ -100,31 +103,43 @@ function InputController:mousereleased(x, y, button)
 	
 end
 
-function InputController:keyWasPressed(key)
+function InputController:keyIsPressed(key)
 	
 	if (self._keyspressed[key]) then return true
 	else return false end
 	
 end
 
-function InputController:keyWasReleased(key)
+function InputController:keyIsReleased(key)
 	
 	if (self._keysreleased[key]) then return true
 	else return false end
 	
 end
 
-function InputController:mouseWasPressed(button)
+function InputController:keyIsDown(key)
+	
+	return (self._keysdown[key] ~= nil)
+	
+end
+
+function InputController:mouseIsPressed(button)
 	
 	if (self._mousepressed[key]) then return true
 	else return false end
 	
 end
 
-function InputController:mouseWasReleased(button)
+function InputController:mouseIsReleased(button)
 	
 	if (self._mousereleased[key]) then return true
 	else return false end
+	
+end
+
+function InputController:mouseIsDown(button)
+	
+	return (self._mousedown[key] ~= nil)
 	
 end
 

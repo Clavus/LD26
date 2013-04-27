@@ -1,10 +1,10 @@
 
 SpriteData = class("SpriteData")
 
-function SpriteData:initialize( imageFile, offset, imgsize, origin, numcolums, numframes, frames_per_sec, should_loop )
+function SpriteData:initialize( image_file, offset, imgsize, origin, numcolums, numframes, frames_per_sec, should_loop )
 
-	self._file = imageFile
-	self.image = resource.getImage(imageFile)
+	self._file = image_file
+	self.image = resource.getImage(image_file)
 	self.offset = offset or Vector(0,0)
 	self.size = imgsize or Vector(32,32)
 	self.origin_pos = origin or Vector(0,0)

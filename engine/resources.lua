@@ -3,14 +3,14 @@ resource = {}
 
 local loaded_images = {}
 
-function resource.getImage( imageFile )
+function resource.getImage( image_file )
 	
-	if (imageFile == nil) then return end
+	if (image_file == nil) then return end
 	
-	if (loaded_images[imageFile] == nil) then
-		loaded_images[imageFile] = love.graphics.newImage(imageFile)
+	if (loaded_images[image_file] == nil) then
+		loaded_images[image_file] = love.graphics.newImage(image_file)
 	end
 	
-	return loaded_images[imageFile]
+	return loaded_images[image_file]
 	
 end

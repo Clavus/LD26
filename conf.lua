@@ -1,6 +1,6 @@
 
 function love.conf(t)
-    t.title = "Ludum Dare 26"        -- The title of the window the game is in (string)
+    t.title = "One Word RPG"   -- The title of the window the game is in (string)
     t.author = "Clavus"        -- The author of the game (string)
     t.url = ""                 -- The website of the game (string)
     t.identity = nil            -- The name of the save directory (string)

@@ -1,5 +1,6 @@
 
 require("game/input_constants")
+require("game/sprite_layouts")
 
 require("game/classes/rpgplayer")
 
