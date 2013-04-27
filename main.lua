@@ -7,6 +7,7 @@ local _curTime = 0
 
 function love.load()
 	
+	input = InputController()
 	game.load()
 	
 end
@@ -15,6 +16,7 @@ function love.update( dt )
 	
 	_curTime = _curTime + dt
 	game.update( dt )
+	input:clear()
 	
 end
 
@@ -28,18 +30,26 @@ end
 
 function love.mousepressed(x, y, button)
 	
+	input:mousepressed(x,y,button)
+	
 end
 
 function love.mousereleased(x, y, button)
-
+	
+	input:mousereleased(x,y,button)
+	
 end
 
 function love.keypressed(key, unicode)
-
+	
+	input:keypressed(key, unicode)
+	
 end
 
 function love.keyreleased(key, unicode)
-
+	
+	input:keyreleased(key, unicode)
+	
 end
 
 function love.focus(f)

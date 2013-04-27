@@ -7,7 +7,7 @@ function Level:initialize( leveldata )
 	self._camera = Camera()
 	
 	love.physics.setMeter(1)
-    self._physworld = love.physics.newWorld(0, 10, false)
+    self._physworld = love.physics.newWorld(0, 0, false)
 	self._physworld:setCallbacks(self._beginContact, self._endContact, self._preSolve, self._postSolve)
 	
 	local objects = nil
@@ -51,9 +51,13 @@ function Level:draw()
 	
 end
 
---[[ Mattijs code ]]--
+function Level:getEntitiesByClass( cl )
+
+	return self._entManager:getEntsByClass( cl )
+	
+end
+
 function Level:_beginContact(a,b,coll) end
 function Level:_endContact(a,b,coll) end
 function Level:_preSolve(a,b,coll) end
 function Level:_postSolve(a,b,coll) end
---[[ end Mattijs code ]]--

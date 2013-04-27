@@ -37,6 +37,8 @@ function EntityManager:initialize( physworld, levelobjects )
 		
 	end
 	
+	--print(table.toString(self._entities, "entities", true))
+	
 end
 
 function EntityManager:update( dt )
@@ -53,4 +55,16 @@ function EntityManager:draw()
 		v:draw()
 	end
 
+end
+
+function EntityManager:getEntsByClass( cl )
+
+	local res = {}
+	for k, v in pairs( self._entities ) do
+		if (instanceOf(cl, v)) then
+			table.insert(res, v)
+		end
+	end
+	return res
+	
 end
