@@ -23,6 +23,13 @@ function math.rand( low, high )
 	
 end
 
+function math.choose( ... )
+	
+	local arg = {...}
+	return arg[math.random(1,#arg)]
+	
+end
+
 function math.round( i )
 
 	i = i or 0

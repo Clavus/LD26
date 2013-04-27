@@ -1,6 +1,7 @@
 
 require("game/input_constants")
 require("game/sprite_layouts")
+require("game/ai_machines")
 
 require("game/classes/rpgplayer")
 require("game/classes/zombie")
