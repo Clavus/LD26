@@ -34,3 +34,15 @@ function Zombie:draw()
 	self._charsprite:draw(pos.x, pos.y)
 	
 end
+
+function Zombie:setPos( vec )
+
+	self._body:setPosition(vec.x, vec.y)
+
+end
+
+function Zombie:getPos()
+
+	return Vector(self._body:getPosition())
+	
+end

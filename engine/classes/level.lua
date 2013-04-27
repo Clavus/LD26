@@ -67,7 +67,7 @@ function Level:updateActiveTiles()
 			self._entitydrawindex = index
 		end
 		
-		print("num active tiles: "..#self._activetiles)
+		--print("num active tiles: "..#self._activetiles)
 		--print("entity draw index: "..self._entitydrawindex)
 		
 	end
@@ -125,7 +125,20 @@ function Level:getEntitiesByClass( class )
 	
 end
 
-function Level:_beginContact(a,b,coll) end
-function Level:_endContact(a,b,coll) end
-function Level:_preSolve(a,b,coll) end
-function Level:_postSolve(a,b,coll) end
+function Level._beginContact(a, b, contact)
+	
+	print("begin contact "..tostring(a:getUserData()).." -> "..tostring(b:getUserData()))
+	
+end
+
+function Level._endContact(a, b, contact)
+
+end
+
+function Level._preSolve(a, b, contact)
+
+end
+
+function Level._postSolve(a, b, contact, normal, impulse)
+
+end
