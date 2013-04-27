@@ -15,7 +15,7 @@ function Player:initialize( world )
 end
 
 function Player:draw()
-	
+
 	love.graphics.circle("line", 
 			self._body:getX(), 
 			self._body:getY(), 

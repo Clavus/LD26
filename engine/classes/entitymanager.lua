@@ -1,43 +1,38 @@
 
 EntityManager = class("EntityManager")
 
-function EntityManager:initialize( physworld, levelobjects )
+function EntityManager:initialize()
 	
 	self._entities = {}
+	--print(table.toString(self._entities, "entities", true))
 	
-	local wallCounter = 1
+end
+
+function EntityManager:loadLevelObjects( level, levelobjects )
 	
-	if (levelobjects) then
+	if (levelobjects and game.createLevelEntity) then
 	
 		for i,v in ipairs(levelobjects) do
-		
-			local ent
-			
-			if v.type == "Wall" then
-				
-				ent = Wall(physworld)
-				if v.w == nil then
-					ent:buildFromPolygon(v.polygon)
-				else
-					ent:buildFromSquare(v.w,v.h)
-				end
-				
-				ent:setPos(Vector(v.x, v.y))
-				
-			elseif v.type == "Player" then
-				
-				ent = Player(physworld)
-				ent:setPos(Vector(v.x, v.y))
-				
-			end
-			
-			table.insert(self._entities, ent)
-			
+			game.createLevelEntity(level, v)
 		end
 		
 	end
 	
-	--print(table.toString(self._entities, "entities", true))
+end
+
+function EntityManager:createEntity( class, ...)
+	
+	local ent
+	if (_G[class]) then
+		ent = _G[class](...)
+	end
+	
+	if (ent ~= nil and instanceOf(_G[class], ent)) then
+		table.insert(self._entities, ent)
+		return ent
+	else
+		return nil
+	end
 	
 end
 

@@ -4,6 +4,7 @@ Sprite = class("Sprite")
 function Sprite:initialize( sData )
 	
 	self._image = sData.image
+	self._offset = sData.offset or Vector(0,0)
 	self._size = sData.size or Vector(32,32)
 	self._origin_pos = sData.origin_pos or Vector(0,0)
 	self._num_frames = sData.num_frames or 1

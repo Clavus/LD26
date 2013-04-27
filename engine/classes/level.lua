@@ -15,7 +15,8 @@ function Level:initialize( leveldata )
 		objects = leveldata.objects
 	end
 	
-	self._entManager = EntityManager(self._physworld, objects)
+	self._entManager = EntityManager()
+	self._entManager:loadLevelObjects(self, objects)
 	
 end
 
@@ -51,9 +52,21 @@ function Level:draw()
 	
 end
 
-function Level:getEntitiesByClass( cl )
+function Level:getPhysicsWorld()
 
-	return self._entManager:getEntsByClass( cl )
+	return self._physworld
+	
+end
+
+function Level:createEntity( class, ... )
+
+	return self._entManager:createEntity( class, ...)
+	
+end
+
+function Level:getEntitiesByClass( class )
+
+	return self._entManager:getEntsByClass( class )
 	
 end
 
