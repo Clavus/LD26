@@ -12,6 +12,28 @@
   <object type="Player" x="3744" y="6048"/>
   <object type="Zombie" x="3488" y="5376"/>
   <object type="Zombie" x="3616" y="5280"/>
+  <object type="Zombie" x="3680" y="5280"/>
+  <object type="Zombie" x="3744" y="5344"/>
+  <object type="Zombie" x="3904" y="5344"/>
+  <object type="Zombie" x="3872" y="5184"/>
+  <object type="Zombie" x="3744" y="5088"/>
+  <object type="Zombie" x="3520" y="5120"/>
+  <object type="Zombie" x="3424" y="5152"/>
+  <object type="Zombie" x="3488" y="5312"/>
+  <object type="Zombie" x="3648" y="5408"/>
+  <object type="Zombie" x="3776" y="5504"/>
+  <object type="Zombie" x="3968" y="5408"/>
+  <object type="Zombie" x="4032" y="5248"/>
+  <object type="Zombie" x="4000" y="5184"/>
+  <object type="Zombie" x="3776" y="5152"/>
+  <object type="Zombie" x="3712" y="5248"/>
+  <object type="Zombie" x="3904" y="5120"/>
+  <object type="Zombie" x="3968" y="5088"/>
+  <object type="Zombie" x="4064" y="5280"/>
+  <object type="Zombie" x="4064" y="5344"/>
+  <object type="Zombie" x="3936" y="5280"/>
+  <object type="Zombie" x="3936" y="5248"/>
+  <object type="Zombie" x="3936" y="5248"/>
  </objectgroup>
  <layer name="world" width="200" height="200">
   <data encoding="base64" compression="gzip">

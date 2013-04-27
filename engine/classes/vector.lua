@@ -52,15 +52,17 @@ end
 
 function Vector:normalize()
 
-	return self / self:length()
+	return self:divideBy( self:length() )
 	
 end
 
 function Vector:getNormalized()
 
-	return vector.DivideN(self, vector.Length(self))
+	return self:copy():normalize()
 	
 end
+
+Vector.getNormal = Vector.getNormalized
 
 function Vector:rotate( r )
 	
@@ -120,9 +122,14 @@ end
 
 function Vector:divideBy( a )
 
-	assert(a.class and a.class.name == "Vector")
-	self.x = self.x / a
-	self.y = self.y / a
+	if (type(a) == "number") then
+		self.x = self.x / a
+		self.y = self.y / a	
+	elseif (a.class and a.class.name == "Vector") then
+		self.x = self.x / a.x
+		self.y = self.y / a.y
+	end
+
 	return self
 	
 end

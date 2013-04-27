@@ -17,7 +17,7 @@ function math.clamp( num, low, high )
 	
 end
 
-function math.rand( low, high )
+function math.randRange( low, high )
 
 	return low + (math.random() * (high-low))
 	

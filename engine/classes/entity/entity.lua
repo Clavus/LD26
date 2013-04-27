@@ -1,14 +1,15 @@
 
 Entity = class("Entity")
 
-local _entIndex = 1
+local entCounter = 0
 
 function Entity:initialize()
 	
 	self._pos = Vector(0,0)
 	self._index = _entIndex
 	
-	_entIndex = _entIndex + 1
+	entCounter = entCounter + 1
+	self._entIndex = entCounter
 	
 end
 
@@ -35,6 +36,6 @@ end
 
 function Entity:getEntIndex()
 	
-	return _entIndex
+	return self._entIndex
 	
 end

@@ -51,44 +51,72 @@ end
 function Zombie:thinkHardAboutLife()
 	
 	local changed = false
+	local pldis = player:getPos():distance(self:getPos())
+	local prev_state = self._fsm:getState()
 	
-	if (player:getPos():distance(self:getPos()) < 360 and false) then
+	if (pldis < 360) then
 		self._fsm:triggerEvent("see player")
-		changed = true
-	elseif (self.time_nextaction < engine.currentTime()) then
-		self._fsm:triggerEvent("time passed")
-		self.time_nextaction = engine.currentTime() + 2 + math.random() * 3
-		changed = true
+	elseif (pldis > 500) then
+		self._fsm:triggerEvent("lost player")
 	end
 	
-	if (changed) then
-		self.velocity.x = 0
-		self.velocity.y = 0
-		if (self._fsm:getState() == "idle") then
-		
-			self._charsprite:resetAnimation()
-			
-		elseif (self._fsm:getState() == "walk") then
-			local choice = math.choose("moveleft", "moveright", "movedown", "moveup")
-			self._animstate = choice
-			self._charsprite:setState(choice)
-	
-			if (choice == "moveleft") then
-				self.velocity.x = -16
-				self.velocity.y = 0
-			elseif (choice == "moveright") then
-				self.velocity.x = 16
-				self.velocity.y = 0
-			elseif (choice == "movedown") then
-				self.velocity.x = 0
-				self.velocity.y = 16
-			elseif (choice == "moveup") then
-				self.velocity.x = 0
-				self.velocity.y = -16
-			end
+	if (self.time_nextaction < engine.currentTime()) then
+		if (self._fsm:triggerEvent("time passed")) then
+			self.time_nextaction = engine.currentTime() + 2 + math.random() * 3
 		end
 	end
 	
+	--print(self:getEntIndex()..": "..self._fsm:getState())
+	
+	-- things that needs to be triggered once
+	if (prev_state ~= self._fsm:getState()) then
+	
+		if (self._fsm:getState() == "idle") then
+			
+			self.velocity.x = 0
+			self.velocity.y = 0
+			self._charsprite:resetAnimation()
+			
+		elseif (self._fsm:getState() == "walk") then
+		
+			self._animstate = math.choose("moveleft", "moveright", "movedown", "moveup")
+			self._charsprite:setState(self._animstate)
+	
+			if (self._animstate == "moveleft") then
+				self.velocity.x = -32
+				self.velocity.y = 0
+			elseif (self._animstate == "moveright") then
+				self.velocity.x = 32
+				self.velocity.y = 0
+			elseif (self._animstate == "movedown") then
+				self.velocity.x = 0
+				self.velocity.y = 32
+			elseif (self._animstate == "moveup") then
+				self.velocity.x = 0
+				self.velocity.y = -32
+			end
+			
+		end
+		
+	end
+	
+	-- continious triggers
+	if (self._fsm:getState() == "attack") then
+			
+		self.velocity = (player:getPos() - self:getPos()):normalize() * 32
+		
+		if (math.abs(self.velocity.x) < math.abs(self.velocity.y)) then
+			if (self.velocity.y < 0) then self._animstate = "moveup"
+			else self._animstate = "movedown" end
+		else
+			if (self.velocity.x < 0) then self._animstate = "moveleft"
+			else self._animstate = "moveright" end
+		end
+		
+		self._charsprite:setState(self._animstate)
+		
+	end
+		
 end
 
 function Zombie:setPos( vec )

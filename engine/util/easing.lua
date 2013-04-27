@@ -1,11 +1,19 @@
 --[[ 
 http://www.robertpenner.com/easing/
 
+Visualization of the easing functions:
+http://jqueryui.com/resources/demos/effect/easing.html
+
 For all easing functions:
 t = elapsed time
 b = begin
 c = change == ending - beginning
 d = duration (total time)
+
+And additionally for elastic functions:
+a = amplitude
+p = period
+
 ]]--
 
 easing = {}
@@ -235,8 +243,6 @@ function easing.inElastic(t, b, c, d, a, p)
 	return -(a * pow(2, 10 * t) * sin((t * d - s) * (2 * pi) / p)) + b
 end
 
--- a: amplitud
--- p: period
 function easing.outElastic(t, b, c, d, a, p)
 	if t == 0 then return b end
 	t = t / d
@@ -254,8 +260,6 @@ function easing.outElastic(t, b, c, d, a, p)
 	return a * pow(2, -10 * t) * sin((t * d - s) * (2 * pi) / p) + c + b
 end
 
--- p = period
--- a = amplitud
 function easing.inOutElastic(t, b, c, d, a, p)
 	if t == 0 then return b end
 
@@ -282,8 +286,6 @@ function easing.inOutElastic(t, b, c, d, a, p)
 	end
 end
 
--- a: amplitud
--- p: period
 function easing.outInElastic(t, b, c, d, a, p)
 	if t < d / 2 then
 		return outElastic(t * 2, b, c / 2, d, a, p)

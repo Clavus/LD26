@@ -112,7 +112,59 @@ function RPGPlayer:handleMovement()
 	
 	local left, right, down, up = input:keyIsDown(INPUT.MOVELEFT),input:keyIsDown(INPUT.MOVERIGHT), input:keyIsDown(INPUT.MOVEDOWN), input:keyIsDown(INPUT.MOVEUP)
 	local pleft, pright, pdown, pup = input:keyIsPressed(INPUT.MOVELEFT),input:keyIsPressed(INPUT.MOVERIGHT), input:keyIsPressed(INPUT.MOVEDOWN), input:keyIsPressed(INPUT.MOVEUP)
+	local no_move = true
 	
+	if (left) then
+		
+		if (not up and not down) then
+			self._animstate = "moveleft"
+			self._charsprite:setState("moveleft", false)
+			self._charsprite:setSpeed(1)
+		end
+		
+		self.velocity.x = -self.move_speed
+		no_move = false
+		
+	elseif (right) then
+		
+		if (not up and not down) then
+			self._animstate = "moveright"
+			self._charsprite:setState("moveright", false)
+			self._charsprite:setSpeed(1)
+		end
+		
+		self.velocity.x = self.move_speed
+		no_move = false
+		
+	else
+		self.velocity.x = 0
+	end
+	
+	if (up) then
+	
+		self._animstate = "moveup"
+		self._charsprite:setState("moveup", false)
+		self._charsprite:setSpeed(1)
+		self.velocity.y = -self.move_speed
+		no_move = false
+		
+	elseif (down) then
+		
+		self._animstate = "movedown"
+		self._charsprite:setState("movedown", false)
+		self._charsprite:setSpeed(1)
+		self.velocity.y = self.move_speed
+		no_move = false
+		
+	else
+		self.velocity.y = 0
+	end
+	
+	if (self.velocity:length() > 0) then
+		self.velocity = self.velocity:getNormal() * self.move_speed
+	end
+	
+	--[[
 	if (pleft or (left and not pright and not pdown and not pup)) then
 		
 		self._animstate = "moveleft"
@@ -144,8 +196,10 @@ function RPGPlayer:handleMovement()
 		self._charsprite:setSpeed(1)
 		self.velocity.x = 0
 		self.velocity.y = -self.move_speed
-		
-	else
+	]]--
+	
+	
+	if (no_move) then
 		
 		if (self._animstate == "attackleft") then self._animstate = "moveleft"
 		elseif (self._animstate == "attackright") then self._animstate = "moveright"
@@ -157,8 +211,6 @@ function RPGPlayer:handleMovement()
 	
 		-- standing still
 		self._charsprite:setSpeed(0)
-		self.velocity.x = 0
-		self.velocity.y = 0
 		
 	end
 	
