@@ -14,3 +14,10 @@ function resource.getImage( image_file )
 	return loaded_images[image_file]
 	
 end
+
+function resource.getImageDimensions( image_file )
+	
+	local img = resource.getImage( image_file )
+	return Vector(img:getWidth(), img:getHeight())
+	
+end

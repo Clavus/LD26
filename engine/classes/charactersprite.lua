@@ -59,7 +59,9 @@ end
 
 function CharacterSprite:resetAnimation()
 	
-	self._sprites[state]:reset()
+	if (self._sprites[self._state]) then
+		self._sprites[self._state]:reset()
+	end
 	
 end
 

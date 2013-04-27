@@ -42,6 +42,14 @@ function Vector:dot( other )
 	
 end
 
+function Vector:snap( gridsize )
+	
+	local sx, sy = math.round(self.x/gridsize.x), math.round(self.y/gridsize.y)
+	self.x = sx * gridsize.x
+	self.y = sy * gridsize.y
+	
+end
+
 function Vector:normalize()
 
 	return self / self:length()

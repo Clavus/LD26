@@ -4,13 +4,13 @@ require("game/sprite_layouts")
 
 require("game/classes/rpgplayer")
 
-local level
-local player
+local level, player
 
 function game.load()
 	
+	gui = GUI()
 	level = Level(TiledLevelData(FOLDER.ASSETS.."area1"))
-
+	
 	print("Game initialized")
 	
 end
@@ -18,12 +18,14 @@ end
 function game.update( dt )
 
 	level:update( dt )
-
+	gui:update( dt )
+	
 end
 
 function game.draw()
 
 	level:draw()
+	gui:draw()
 	
 end
 
