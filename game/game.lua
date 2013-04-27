@@ -5,7 +5,6 @@ require("game/sprite_layouts")
 require("game/classes/rpgplayer")
 require("game/classes/zombie")
 
-local level, player
 local camera_margin = 64
 
 function game.load()
@@ -16,7 +15,6 @@ function game.load()
 	local pls = level:getEntitiesByClass(Player)
 	player = pls[1]
 	
-	print(tostring(player))
 	print("Game initialized")
 	
 end
@@ -28,18 +26,18 @@ function game.update( dt )
 	
 	local cam = level:getCamera()
 	local campos = cam:getTargetPos()
+	local camw = cam:getWidth()
+	local camh = cam:getHeight()
 	local plpos = player:getPos()
 	
-	print("cam "..tostring(cam:getPos())..", player "..tostring(plpos))
-	
 	if (plpos.x < campos.x + camera_margin) then
-		cam:moveTo(campos - Vector(love.graphics.getWidth() - 2*camera_margin, 0), 1)
-	elseif (plpos.x > campos.x + love.graphics.getWidth() - camera_margin) then
-		cam:moveTo(campos + Vector(love.graphics.getWidth() - 2*camera_margin, 0), 1)
+		cam:moveTo(campos - Vector(camw - 2*camera_margin, 0), 1)
+	elseif (plpos.x > campos.x + camw - camera_margin) then
+		cam:moveTo(campos + Vector(camw - 2*camera_margin, 0), 1)
 	elseif (plpos.y < campos.y + camera_margin) then
-		cam:moveTo(campos - Vector(0, love.graphics.getHeight() - 2*camera_margin), 1)
-	elseif (plpos.y > campos.y + love.graphics.getHeight() - camera_margin) then
-		cam:moveTo(campos + Vector(0, love.graphics.getHeight() - 2*camera_margin), 1)
+		cam:moveTo(campos - Vector(0, camh - 2*camera_margin), 1)
+	elseif (plpos.y > campos.y + camh - camera_margin) then
+		cam:moveTo(campos + Vector(0, camh - 2*camera_margin), 1)
 	end
 	
 end

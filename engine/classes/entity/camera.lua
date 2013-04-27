@@ -46,6 +46,8 @@ function Camera:moveTo( pos, duration )
 	self._easingstart = engine.currentTime()
 	self._easingduration = duration
 	
+	level:updateActiveTiles()
+	
 end
 
 function Camera:preDraw()
@@ -53,13 +55,35 @@ function Camera:preDraw()
 	love.graphics.push()
 	love.graphics.scale( self._scale.x, self._scale.y )
 	love.graphics.rotate( self._angle )
-	love.graphics.translate( -self._pos.x, -self._pos.y )
+	love.graphics.translate( math.round(-self._pos.x), math.round(-self._pos.y) )
 	
 end
 
 function Camera:postDraw()
 	
 	love.graphics.pop()
+	
+end
+
+function Camera:getWidth()
+	
+	return love.graphics.getWidth() / self._scale.x
+	
+end
+
+function Camera:getHeight()
+	
+	return love.graphics.getHeight() / self._scale.y
+	
+end
+
+function Camera:isRectInView( x, y, w, h )
+	
+	w = w or 0
+	h = h or 0
+	
+	return (x >= self._pos.x - w and x <= self._pos.x + self:getWidth() and
+			y >= self._pos.y - h and y <= self._pos.y + self:getHeight())
 	
 end
 

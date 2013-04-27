@@ -5,14 +5,13 @@
  </tileset>
  <layer name="background" width="200" height="200">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XsQrCQBBF0Y1YGkv1/7/UCNoEBzYzEBg4B165XS7ZXcYYy8mDLs5uQx90og+I6QNi+oCYPiCmD4jpA2KV7/yy7Zo4B11U+rhtuyfOQRf6gFi1j3Ucv2NBF5W3x/rd0X8IdFFt47cj/xDoonKvyjYCXWT6eIz/fczes6CL7Pvj08hzt9fkWegi20dl0IU+IKYPiOkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBlvOBwmRwBxAgA=
+   H4sIAAAAAAAAC+3dsW7DIBiFUVJ1TDu2ff8njTxYYPB15CpqkXyGs7N8+sFE5FZKuQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwUh8n/Pda4S+daUMfXMnZNvTBVfymDX1wFdqATB+QaQOe0wc8pw3ItAHH7qV28TnBemAmbR+L9wnWBLPo+zBDoOr7MEOg+ipjH2YIVBqBY30j+oAt33oh0wdk+oCsPYPoA0brDNEHjNY+fiZYC8xm6cPsgNFbMTsgMTtg3zo79AFbaxv6gJF7QdjXzo7v4mwOK/sqyOyrYF87O9x5wJbZAZk+INMHZPqArO3D2Rwq9x6Q2VtBpg/Y198L6gOq/j1qZ3Oo7K0g0wdk+oBMH5D1/2Pgv6JgywyBTB+QeacdjnmnHTJ9QNbusXzDgpEZAln7HcsMga1lj7W8KaoRyOyzIHNWh2NmCGTO6pD5zQkcs8eCTB+Q6QMyfUCmD8j0AZk+INMHZPqATB+Q6QMyfUCmj9d6AHvyltIAcQIA
   </data>
  </layer>
  <objectgroup name="objects" width="200" height="200">
-  <object type="Player" x="448" y="288"/>
-  <object type="Zombie" x="832" y="352"/>
-  <object type="Zombie" x="672" y="576"/>
-  <object type="Zombie" x="192" y="576"/>
+  <object type="Player" x="3744" y="6048"/>
+  <object type="Zombie" x="3488" y="5376"/>
+  <object type="Zombie" x="3616" y="5280"/>
  </objectgroup>
  <layer name="world" width="200" height="200">
   <data encoding="base64" compression="gzip">

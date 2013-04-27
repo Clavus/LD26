@@ -18,6 +18,11 @@ function Level:initialize( leveldata )
 	self._entManager = EntityManager()
 	self._entManager:loadLevelObjects(self, objects)
 	
+	self._entitydrawindex = nil
+	self._activetiles = {}
+	
+	self:updateActiveTiles()
+	
 end
 
 function Level:update( dt )
@@ -28,24 +33,68 @@ function Level:update( dt )
 	
 end
 
+function Level:updateActiveTiles()
+	
+	self._activetiles = {}
+	self._entitydrawindex = nil
+	
+	if (self._leveldata) then
+		
+		local camx = self._camera:getTargetPos().x
+		local camy = self._camera:getTargetPos().y
+		local camw = self._camera:getWidth()
+		local camh = self._camera:getHeight()
+		local index = 1
+		
+		for k, layer in ipairs( self._leveldata:getLayers() ) do
+			-- draw all entities before the world layer
+			if (self._entitydrawindex == nil and layer.name == "world") then
+				self._entitydrawindex = index
+			end
+		
+			for i, tile in ipairs(layer.tiles) do
+				local _, _, vww, vwh = tile.draw_quad:getViewport()
+				if (tile.x > camx - camw - vww and tile.x < camx + camw*2 and
+					tile.y > camy - camh - vwh and tile.y < camy + camh*2) then
+					table.insert(self._activetiles, tile)
+					index = index + 1
+				end
+			end	
+		end
+		
+		-- if we didn't encounter the world layer, just add it at the end
+		if (self._entitydrawindex == nil) then
+			self._entitydrawindex = index
+		end
+		
+		print("num active tiles: "..#self._activetiles)
+		--print("entity draw index: "..self._entitydrawindex)
+		
+	end
+	
+end
+
 function Level:draw()
 
 	self._camera:preDraw()
 	
-	if (self._leveldata) then
-	
-		for k, layer in ipairs( self._leveldata:getLayers() ) do
-			-- draw all entities before the world layer
-			if (layer.name == "world") then
-				self._entManager:draw()
-			end
+	for k, tile in ipairs(self._activetiles) do
 		
-			for i, tile in ipairs(layer.tiles) do
-				local tset = tile.tileset
-				love.graphics.drawq( tset.image, tile.draw_quad, tile.x, tile.y )
-			end		
+		-- draw all entities before the world layer
+		if (k == self._entitydrawindex) then
+			self._entManager:draw()
 		end
-		
+	
+		local _, _, vww, vwh = tile.draw_quad:getViewport()
+		if (self._camera:isRectInView( tile.x, tile.y, vww, vwh )) then
+			local tset = tile.tileset
+			love.graphics.drawq( tset.image, tile.draw_quad, tile.x, tile.y )
+		end
+	end
+	
+	-- draw if we didn't draw it before
+	if (self._entitydrawindex > #self._activetiles) then
+		self._entManager:draw()
 	end
 	
 	self._camera:postDraw()

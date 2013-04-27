@@ -21,6 +21,7 @@ require("engine/classes/tiledleveldata")
 require("engine/classes/level")
 require("engine/classes/entitymanager")
 require("engine/classes/gui")
+require("engine/classes/finitestatemachine")
 
 require("engine/classes/entity/entity")
 require("engine/classes/entity/camera")
