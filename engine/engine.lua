@@ -2,6 +2,7 @@
 require("engine/lib/middleclass/middleclass")
 
 require("engine/constants")
+require("engine/resources")
 
 require("engine/extend/math")
 require("engine/extend/table")

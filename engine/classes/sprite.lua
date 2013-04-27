@@ -19,12 +19,12 @@ function Sprite:initialize( sData )
 	local col = 0
 	local row = 0
 	local fw, fh = self._size.x, self._size.y
-	local img = self_image
+	local img = self._image
 	
 	for i = 1, self._num_frames do
 		table.insert(quads, love.graphics.newQuad(col*fw, row*fh, fw, fh, img:getWidth(), img:getHeight()))
 		col = col + 1
-		if (col >= sData.cols) then
+		if (col >= sData.num_columns) then
 			col = 0
 			row = row + 1
 		end
