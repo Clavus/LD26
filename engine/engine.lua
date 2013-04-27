@@ -9,6 +9,7 @@ require("engine/extend/table")
 
 require("engine/util/angle")
 require("engine/util/util")
+require("engine/util/easing")
 
 require("engine/classes/vector")
 require("engine/classes/sprite")

@@ -52,6 +52,12 @@ function Level:draw()
 	
 end
 
+function Level:getCamera()
+	
+	return self._camera
+	
+end
+
 function Level:getPhysicsWorld()
 
 	return self._physworld
@@ -66,7 +72,7 @@ end
 
 function Level:getEntitiesByClass( class )
 
-	return self._entManager:getEntsByClass( class )
+	return self._entManager:getEntitiesByClass( class )
 	
 end
 

@@ -45,14 +45,15 @@ function EntityManager:update( dt )
 end
 
 function EntityManager:draw()
-
+	
+	table.sort(self._entities, function(a, b) return a:getPos().y < b:getPos().y end)
 	for k, v in pairs( self._entities ) do
 		v:draw()
 	end
 
 end
 
-function EntityManager:getEntsByClass( cl )
+function EntityManager:getEntitiesByClass( cl )
 
 	local res = {}
 	for k, v in pairs( self._entities ) do
