@@ -17,9 +17,6 @@ function Level:initialize( leveldata )
 	self._entManager = EntityManager()
 	self._entManager:loadLevelObjects(self, objects)
 	
-	self._layerindices = {}
-	self._activetiles = {}
-	
 	self:updateActiveTiles()
 	
 end
@@ -35,15 +32,12 @@ end
 function Level:updateActiveTiles()
 	
 	self._activetiles = {}
-	self._entitydrawindex = nil
+	self._layerindices = {}
 	
 	if (self._leveldata) then
 		
-		local camx = self._camera:getTargetPos().x
-		local camy = self._camera:getTargetPos().y
-		local camw = self._camera:getWidth()
-		local camh = self._camera:getHeight()
 		local index = 1
+		local campos = self._camera:getTargetPos()
 		
 		for k, layer in ipairs( self._leveldata:getLayers() ) do
 			-- store indices where layers transition
@@ -51,8 +45,7 @@ function Level:updateActiveTiles()
 		
 			for i, tile in ipairs(layer.tiles) do
 				local _, _, vww, vwh = tile.draw_quad:getViewport()
-				if (tile.x > camx - camw - vww and tile.x < camx + camw*2 and
-					tile.y > camy - camh - vwh and tile.y < camy + camh*2) then
+				if (self:isRectInActiveArea(campos, tile.x, tile.y, vww, vwh)) then
 					table.insert(self._activetiles, tile)
 					index = index + 1
 				end
@@ -62,6 +55,20 @@ function Level:updateActiveTiles()
 		--print("num active tiles: "..#self._activetiles)
 		--print("entity draw index: "..self._entitydrawindex)
 		
+	end
+	
+end
+
+function Level:isRectInActiveArea(campos, x, y, w, h)
+	
+	local camx = campos.x
+	local camy = campos.y
+	local camw = self._camera:getWidth()
+	local camh = self._camera:getHeight()
+	
+	if (x > camx - camw - w and x < camx + camw*2 and
+		y > camy - camh - h and y < camy + camh*2) then
+		return true
 	end
 	
 end

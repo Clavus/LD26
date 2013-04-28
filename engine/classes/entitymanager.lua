@@ -6,7 +6,6 @@ function EntityManager:initialize()
 	self._entities = {}
 	--print(table.toString(self._entities, "entities", true))
 	self._drawlist = {}
-	
 	self._update_drawlist = true
 	
 end
@@ -64,25 +63,30 @@ function EntityManager:preDraw()
 	
 		self._drawlist = { _final = {} }
 		local layer
+		local campos = level:getCamera():getTargetPos()
 		
 		for k, ent in pairs( self._entities ) do
-			layer = ent:getDrawLayer()
-			if (layer == DRAW_LAYER_TOP) then
-				table.insert(self._drawlist._final, ent)
-			else
-				if not self._drawlist[layer] then
-					self._drawlist[layer] = {} 
+			
+			if (level:isRectInActiveArea(campos, ent:getDrawBoundingBox())) then
+				layer = ent:getDrawLayer()
+				if (layer == DRAW_LAYER_TOP) then
+					table.insert(self._drawlist._final, ent)
+				else
+					if not self._drawlist[layer] then
+						self._drawlist[layer] = {} 
+					end
+					table.insert(self._drawlist[layer], ent)
 				end
-				table.insert(self._drawlist[layer], ent)
 			end
-		end
-		
-		for k, v in pairs( self._drawlist ) do
-			table.sort( self._drawlist[k], function(a, b) return a:getDepth() > b:getDepth() end )
+			
 		end
 		
 		self._update_drawlist = false
-		
+	end
+	
+	-- sort entities by depth
+	for k, v in pairs( self._drawlist ) do
+		table.sort( self._drawlist[k], function(a, b) return a:getDepth() > b:getDepth() end )
 	end
 	
 end

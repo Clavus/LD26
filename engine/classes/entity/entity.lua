@@ -46,6 +46,13 @@ function Entity:getDrawLayer()
 	
 end
 
+function Entity:getDrawBoundingBox()
+	
+	local pos = self:getPos()
+	return pos.x - 32, pos.y - 32, 64, 64
+	
+end
+
 function Entity:getDepth()
 	
 	return -self:getPos().y + self._relative_depth
