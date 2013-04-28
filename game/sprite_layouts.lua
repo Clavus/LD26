@@ -32,5 +32,6 @@ SPRITELAYOUT["effect_attack"] = {
 }
 
 SPRITELAYOUT["speechbubble"] = {
-	{ state_name = "restart", num_columns = 1, num_frames = 1, offset = Vector(0,0), fps = 0, loops = false }
+	{ state_name = "restart", num_columns = 1, num_frames = 1, offset = Vector(0,0), fps = 0, loops = false },
+	{ state_name = "arrowkeys", num_columns = 1, num_frames = 1, offset = Vector(0,BUBBLE_FRAME_SIZE), fps = 0, loops = false }
 }

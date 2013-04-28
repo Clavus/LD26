@@ -90,8 +90,15 @@ end
 -- is called by map trigger entities
 function game.handleTrigger( other, contact, trigger_type, ...)
 	
+	local params = {...}
+	
 	if (instanceOf(RPGPlayer, other)) then
-		print("Trigger collision!")
+		
+		if (trigger_type == "speech") then
+			local ent = level:createEntity("SpeechBubble", params[1], tonumber(params[2]))
+			ent:attachTo(other)
+		end
+		
 		return true
 	end
 	

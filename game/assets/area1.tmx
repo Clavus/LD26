@@ -56,12 +56,14 @@
   <object type="Trigger" x="3712" y="4704" width="96" height="64">
    <properties>
     <property name="param1" value="spacebar"/>
+    <property name="param2" value="5"/>
     <property name="type" value="speech"/>
    </properties>
   </object>
   <object type="Trigger" x="3712" y="6016" width="96" height="64">
    <properties>
     <property name="param1" value="arrowkeys"/>
+    <property name="param2" value="5"/>
     <property name="type" value="speech"/>
    </properties>
   </object>
