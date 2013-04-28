@@ -101,31 +101,25 @@ function Level:draw()
 end
 
 function Level:getCamera()
-	
 	return self._camera
-	
 end
 
 function Level:getPhysicsWorld()
-
 	return self._physworld
-	
 end
 
 function Level:createEntity( class, ... )
-
 	return self._entManager:createEntity( class, ...)
-	
+end
+
+function Level:removeEntity( ent )
+	self._entManager:removeEntity( ent )
 end
 
 function Level:getEntitiesByClass( class )
-
 	return self._entManager:getEntitiesByClass( class )
-	
 end
 
 function Level:setCollisionCallbacks( beginContact, endContact, preSolve, postSolve )
-	
 	self._physworld:setCallbacks( beginContact, endContact, preSolve, postSolve )
-	
 end

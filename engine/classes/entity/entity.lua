@@ -7,6 +7,7 @@ function Entity:initialize()
 	
 	self._pos = Vector(0,0)
 	self._index = _entIndex
+	self._relative_depth = 0
 	
 	entCounter = entCounter + 1
 	self._entIndex = entCounter
@@ -34,8 +35,24 @@ function Entity:draw()
 
 end
 
+function Entity:onRemove()
+
+end
+
+function Entity:getDepth()
+	
+	return -self:getPos().y + self._relative_depth
+	
+end
+
 function Entity:getEntIndex()
 	
 	return self._entIndex
+	
+end
+
+function Entity:__eq( other )
+	
+	return instanceOf(self.class, other) and self:getEntIndex() == other:getEntIndex()
 	
 end

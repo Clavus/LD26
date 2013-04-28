@@ -5,6 +5,7 @@ require("game/ai_machines")
 
 require("game/classes/rpgplayer")
 require("game/classes/zombie")
+require("game/classes/speechbubble")
 
 local camera_margin = 64
 
@@ -16,6 +17,9 @@ function game.load()
 
 	local pls = level:getEntitiesByClass(Player)
 	player = pls[1]
+	game.initCamera()
+	
+	input:addKeyReleaseCallback("restart", "r", function() love.load() end)
 	
 	print("Game initialized")
 	
@@ -48,6 +52,38 @@ function game.draw()
 
 	level:draw()
 	gui:draw()
+	
+end
+
+function game.initCamera()
+	
+	local cam = level:getCamera()
+	local campos = cam:getPos()
+	local camw = cam:getWidth()
+	local camh = cam:getHeight()
+	
+	local camgridw = camw - 2*camera_margin
+	local camgridh = camh - 2*camera_margin
+	
+	local plpos = player:getPos()
+	
+	while (plpos.x < campos.x + camera_margin) do
+		campos = campos - Vector(camw - 2*camera_margin,0)
+	end
+	
+	while (plpos.x > campos.x + camw - camera_margin) do
+		campos = campos + Vector(camw - 2*camera_margin, 0)
+	end
+	
+	while (plpos.y < campos.y + camera_margin) do
+		campos = campos - Vector(0, camh - 2*camera_margin)
+	end
+	
+	while (plpos.y > campos.y + camh - camera_margin) do
+		campos = campos + Vector(0, camh - 2*camera_margin)
+	end
+	
+	cam:setPos(campos)
 	
 end
 

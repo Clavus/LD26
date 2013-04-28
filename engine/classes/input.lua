@@ -68,7 +68,7 @@ function InputController:handle_keyreleased(key, unicode)
 	
 	if (self._keyreleasecalls[key]) then
 		for k, v in pairs(self._keyreleasecalls[key]) do
-			v.func(key, engine.currentTime() - self._keysdown[key].time)
+			v(key, engine.currentTime() - self._keysdown[key].time)
 		end
 	end
 	
@@ -83,7 +83,7 @@ function InputController:handle_mousepressed(x, y, button)
 	
 	if (self._mousepresscalls[button]) then
 		for k, v in pairs(self._mousepresscalls[button]) do
-			v.func(x, y)
+			v(x, y)
 		end
 	end
 	

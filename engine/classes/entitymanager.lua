@@ -22,6 +22,8 @@ end
 
 function EntityManager:createEntity( class, ...)
 	
+	--print("Creating entity of "..tostring(class))
+	
 	local ent
 	if (_G[class] and subclassOf(Entity, _G[class])) then
 		ent = _G[class](...)
@@ -36,9 +38,15 @@ function EntityManager:createEntity( class, ...)
 	
 end
 
+function EntityManager:removeEntity( ent )
+	
+	table.removeByValue(self._entities, ent)
+	
+end
+
 function EntityManager:update( dt )
 	
-	for k, v in pairs( self._entities ) do
+	for k, v in ipairs( self._entities ) do
 		v:update( dt )
 	end
 	
@@ -46,7 +54,7 @@ end
 
 function EntityManager:draw()
 	
-	table.sort(self._entities, function(a, b) return a:getPos().y < b:getPos().y end)
+	table.sort(self._entities, function(a, b) return a:getDepth() > b:getDepth() end)
 	for k, v in pairs( self._entities ) do
 		v:draw()
 	end
@@ -56,7 +64,7 @@ end
 function EntityManager:getEntitiesByClass( cl )
 
 	local res = {}
-	for k, v in pairs( self._entities ) do
+	for k, v in ipairs( self._entities ) do
 		if (instanceOf(cl, v)) then
 			table.insert(res, v)
 		end

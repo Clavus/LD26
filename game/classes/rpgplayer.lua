@@ -64,6 +64,8 @@ function RPGPlayer:update( dt )
 			self:setPos( self:getPos() + (self.velocity * dt) )
 		end
 		
+	else
+		self:setPos(self._deathPos)
 	end
 	
 end
@@ -78,6 +80,7 @@ function RPGPlayer:draw()
 	end
 	
 	self._charsprite:draw(pos.x, pos.y)
+	
 	love.graphics.setColor(255,255,255,255)
 	
 	if (self.is_attacking) then
@@ -106,9 +109,16 @@ end
 function RPGPlayer:die()
 	
 	self._dead = true
+	self._deathPos = self:getPos()
+	
 	self._animstate = "death"
 	self._charsprite:setState("death", false)
 	self._charsprite:setSpeed(1)
+	
+	timer.simple(1, function(self)
+		local ent = level:createEntity("SpeechBubble", "restart")
+		ent:setPos(self:getPos() + Vector(-8,-32))
+	end, self)
 	
 	self._attackeffect:resetAnimation()
 	
@@ -148,6 +158,15 @@ function RPGPlayer:attack()
 	
 	self._charsprite:setState(self._animstate, true)
 	self._charsprite:setSpeed(1)
+	
+	local world = level:getPhysicsWorld()
+	local pos = self:getPos()
+	local attackvec = self:getPos() + (self._attackeffect_offset * 1.5)
+	world:rayCast( pos.x, pos.y, attackvec.x, attackvec.y, function(f, x, y, xn, yn, frac)
+		local hit = f:getUserData()
+		if (instanceOf(Zombie, hit)) then hit:takeDamage(self, 50) return 0
+		else return 1 end
+	end)
 	
 	self.velocity.x = 0
 	self.velocity.y = 0

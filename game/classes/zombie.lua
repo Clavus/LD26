@@ -15,6 +15,9 @@ function Zombie:initialize( world )
 	self.time_nextaction = engine.currentTime() + 2 + math.random() * 3
 	self.hp = 100
 	
+	self._damaged = false
+	self._dead = false
+	
 	self._animstate = "movedown"
 	self._charsprite:setState(self._animstate)
 	
@@ -31,11 +34,16 @@ function Zombie:update(dt)
 	self._charsprite:update(dt)
 	self:thinkHardAboutLife()
 	
-	if (self.velocity:length() > 0) then
+	if (self._dead) then
 		self._charsprite:setSpeed(1)
-		self:setPos( self:getPos() + (self.velocity * dt) )
-	else
-		self._charsprite:setSpeed(0)
+		self:setPos(self._deathPos)
+	else	
+		if (self.velocity:length() > 0 and not self._damaged) then
+			self._charsprite:setSpeed(1)
+			self:setPos( self:getPos() + (self.velocity * dt) )
+		else
+			self._charsprite:setSpeed(0)
+		end
 	end
 	
 end
@@ -44,7 +52,47 @@ function Zombie:draw()
 	
 	local pos = self:getPos()
 	pos:snap(Vector(1,1))
+	
+	if (self._damaged and math.floor((engine.currentTime() * 10) % 2) == 1) then
+		love.graphics.setColor(200,100,100,255)
+	end
+	
 	self._charsprite:draw(pos.x, pos.y)
+	
+	love.graphics.setColor(255,255,255,255)
+	
+end
+
+function Zombie:takeDamage( from, amount )
+	
+	if (self:isDead()) then return end
+	
+	self.hp = math.max(0, self.hp - amount)
+	if (self.hp == 0) then
+		self:die()
+	end
+	
+	self._damaged = true
+	timer.simple(0.4, function(self) self._damaged = false end, self)
+
+end
+
+function Zombie:die()
+	
+	self._fsm:triggerEvent("killed")
+	
+	self._dead = true
+	self._deathPos = self:getPos()
+	
+	self._animstate = "death"
+	self._charsprite:setState("death", false)
+	self._charsprite:setSpeed(1)
+	
+end
+
+function Zombie:isDead()
+	
+	return self._dead
 	
 end
 
@@ -53,6 +101,11 @@ function Zombie:thinkHardAboutLife()
 	local changed = false
 	local pldis = player:getPos():distance(self:getPos())
 	local prev_state = self._fsm:getState()
+	
+	if (self:isDead() and pldis > 600) then
+		level:removeEntity(self)
+		return
+	end
 	
 	if (pldis < 360 and not player:isDead()) then
 		self._fsm:triggerEvent("see player")
@@ -139,3 +192,11 @@ function Zombie:getPos()
 	return Vector(self._body:getPosition())
 	
 end
+
+function Zombie:onRemove()
+	
+	self._body:destroy()
+	self._fixture:destroy()
+	
+end
+

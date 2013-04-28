@@ -1,5 +1,5 @@
 
-Camera = class("camera", Entity)
+Camera = class("Camera", Entity)
 
 function Camera:initialize()
 	
@@ -36,6 +36,17 @@ end
 function Camera:getTargetPos()
 	
 	return self._targetpos:copy()
+	
+end
+
+function Camera:setPos( pos )
+	
+	Entity.setPos(self, pos)
+	self._refpos = pos
+	self._targetpos = pos
+	self._easingstart = -100
+	
+	level:updateActiveTiles()
 	
 end
 

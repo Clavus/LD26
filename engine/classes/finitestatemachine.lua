@@ -26,6 +26,7 @@ end
 function FiniteStateMachine:triggerEvent( event )
 	
 	local links = self._description.links[self._state]
+	if (links == nil) then return end
 	if (links[event]) then
 		self._state = links[event]
 		return true
