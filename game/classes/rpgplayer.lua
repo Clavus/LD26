@@ -5,14 +5,20 @@ local attack_duration = 1/6 -- third of a second
 
 function RPGPlayer:initialize( world )
 
-	Player.initialize(self, world)
-	
+	Entity.initialize(self)
+
 	self._charsprite = StateAnimatedSprite( SPRITELAYOUT["character"], FOLDER.ASSETS.."char_sheet64.png", Vector(0,0), Vector(64,64), Vector(32,32) )
 	self._attackeffect = StateAnimatedSprite( SPRITELAYOUT["effect_attack"], FOLDER.ASSETS.."effects64.png", Vector(0,0), Vector(64,64), Vector(32,32) )
 	self.velocity = Vector(0,0)
 	self.move_speed = 196
 	self.last_attack = -100
 	self.is_attacking = false
+	
+	self._body = love.physics.newBody(world, 0, 0, "dynamic")
+	self._body:setMass(1)
+	self._shape = love.physics.newCircleShape(0, 16, 16)
+	self._fixture = love.physics.newFixture(self._body, self._shape)
+	self._fixture:setUserData(self)
 	
 	self._animstate = "movedown"
 	self._charsprite:setState(self._animstate)
@@ -168,7 +174,7 @@ function RPGPlayer:attack()
 	
 	local world = level:getPhysicsWorld()
 	local pos = self:getPos()
-	local attackvec = self:getPos() + (self._attackeffect_offset * 1.5)
+	local attackvec = self:getPos() + Vector(0,16) + (self._attackeffect_offset * 1.5)
 	world:rayCast( pos.x, pos.y, attackvec.x, attackvec.y, function(f, x, y, xn, yn, frac)
 		local hit = f:getUserData()
 		if (instanceOf(Zombie, hit)) then hit:takeDamage(self, 50) return 0

@@ -4,4 +4,5 @@
  <objecttype name="Player" color="#0000ff"/>
  <objecttype name="Zombie" color="#00aa7f"/>
  <objecttype name="Trigger" color="#d4d400"/>
+ <objecttype name="NPC" color="#aa00ff"/>
 </objecttypes>

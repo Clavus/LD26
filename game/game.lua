@@ -6,6 +6,7 @@ require("game/ai_machines")
 require("game/classes/rpgplayer")
 require("game/classes/zombie")
 require("game/classes/speechbubble")
+require("game/classes/npc")
 
 local camera_margin = 64
 
@@ -128,6 +129,16 @@ function game.createLevelEntity( level, entData )
 	elseif entData.type == "Zombie" then
 		
 		ent = level:createEntity(entData.type, level:getPhysicsWorld())
+		ent:setPos(Vector(entData.x, entData.y))
+		
+	elseif entData.type == "NPC" then
+		
+		local sc = "default"
+		if (entData.properties) then
+			sc = entData.properties["scenario"] or sc
+		end
+		
+		ent = level:createEntity(entData.type, level:getPhysicsWorld(), sc)
 		ent:setPos(Vector(entData.x, entData.y))
 		
 	end

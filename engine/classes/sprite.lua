@@ -39,18 +39,23 @@ end
 
 function Sprite:update( dt )
 
-	if (self._num_frames > 1 and self._fps * self._speed ~= 0 and not self._ended) then
+	if (not self._ended and self._num_frames > 1 and self._fps * self._speed ~= 0) then
 		self._cur_frame = self._cur_frame + (dt * self._fps * self._speed)
 		
 		if (self._cur_frame >= self._num_frames + 1) then
 			if (self._loops) then
-				self._cur_frame = 1
+				self._cur_frame = self._cur_frame - self._num_frames
 			else
 				self._cur_frame = self._num_frames
 				self._ended = true
 			end
-		elseif (self._cur_frame < 0) then
-			self._cur_frame = self._num_frames + 1 + self._cur_frame 
+		elseif (self._cur_frame < 1) then
+			if (self._loops) then
+				self._cur_frame = self._num_frames + 1 + self._cur_frame 
+			else
+				self._cur_frame = self._num_frames
+				self._ended = true
+			end
 		end
 		
 	end
@@ -58,9 +63,11 @@ function Sprite:update( dt )
 end
 
 function Sprite:setSpeed( scalar )
-
 	self._speed = scalar
+end
 
+function Sprite:getSpeed( scalar )
+	return self._speed
 end
 
 function Sprite:draw(x, y, r, sx, sy)

@@ -57,6 +57,17 @@ function StateAnimatedSprite:setSpeed( speed )
 	
 end
 
+function StateAnimatedSprite:getSpeed()
+	
+	print("state: "..self._state)
+	if (self._sprites[self._state]) then
+		self._sprites[self._state]:getSpeed()
+	end
+	return 0
+	
+end
+
+
 function StateAnimatedSprite:resetAnimation()
 	
 	if (self._sprites[self._state]) then

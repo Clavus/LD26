@@ -26,7 +26,7 @@ function Zombie:initialize( world )
 	
 	self._body = love.physics.newBody(world, 0, 0, "dynamic")
 	self._body:setMass(1)
-	self._shape = love.physics.newCircleShape(16)
+	self._shape = love.physics.newCircleShape(0, 16, 16)
 	self._fixture = love.physics.newFixture(self._body, self._shape)
 	self._fixture:setUserData(self)
 	
