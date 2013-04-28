@@ -137,6 +137,8 @@ function subclassOf(other, aClass)
 end
 
 function includes(mixin, aClass)
+	--print("TEST: "..tostring(aClass))
+	--print(table.toString(_classes, "classes", true))
 	if not _classes[aClass] then return false end
 	if aClass.__mixins[mixin] then return true end
 	return includes(mixin, aClass.super)

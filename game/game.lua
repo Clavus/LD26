@@ -87,13 +87,24 @@ function game.initCamera()
 	
 end
 
+-- is called by map trigger entities
+function game.handleTrigger( other, contact, trigger_type, ...)
+	
+	if (instanceOf(RPGPlayer, other)) then
+		print("Trigger collision!")
+		return true
+	end
+	
+	return false
+end
+
 -- called upon map load, handle Tiled objects
 function game.createLevelEntity( level, entData )
 	
 	local ent
-	if entData.type == "Wall" then
+	if entData.type == "Wall" or entData.type == "Trigger" then
 				
-		ent = level:createEntity("Wall", level:getPhysicsWorld())
+		ent = level:createEntity(entData.type, level:getPhysicsWorld(), entData.properties)
 		if entData.w == nil then
 			ent:buildFromPolygon(entData.polygon)
 		else
@@ -109,7 +120,7 @@ function game.createLevelEntity( level, entData )
 		
 	elseif entData.type == "Zombie" then
 		
-		ent = level:createEntity("Zombie", level:getPhysicsWorld())
+		ent = level:createEntity(entData.type, level:getPhysicsWorld())
 		ent:setPos(Vector(entData.x, entData.y))
 		
 	end
@@ -120,12 +131,22 @@ function game.collisionBeginContact(a, b, contact)
 	
 	--print("begin contact "..tostring(a:getUserData()).." -> "..tostring(a:getUserData()))
 	local ao, bo = a:getUserData(), b:getUserData()
+	--print("coll "..tostring(ao).." - "..tostring(bo))
+	--print("ao: "..tostring(ao.class)..", incl: "..tostring(includes(CollisionResolver, ao.class)))
 	
-	if (instanceOf(Zombie, ao) and instanceOf(RPGPlayer, bo)) then
-		ao:attackPlayer(bo)
-	elseif (instanceOf(Zombie, bo) and instanceOf(RPGPlayer, ao)) then
-		bo:attackPlayer(ao)
+	if (includes(CollisionResolver, ao.class)) then
+		ao:resolveCollisionWith(bo, contact)
 	end
+
+	if (includes(CollisionResolver, bo.class)) then
+		bo:resolveCollisionWith(ao, contact)
+	end
+	
+	--if (instanceOf(, ao) and instanceOf(RPGPlayer, bo)) then
+	--	ao:attackPlayer(bo)
+	--elseif (instanceOf(Zombie, bo) and instanceOf(RPGPlayer, ao)) then
+	--	bo:attackPlayer(ao)
+	--end
 	
 end
 

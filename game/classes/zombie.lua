@@ -1,5 +1,6 @@
 
 Zombie = class("Zombie", Entity)
+Zombie:include(CollisionResolver)
 
 function Zombie:initialize( world )
 	
@@ -63,6 +64,14 @@ function Zombie:draw()
 	
 end
 
+function Zombie:resolveCollisionWith( other )
+	
+	if (instanceOf(RPGPlayer, other)) then
+		self:attackPlayer(other)
+	end
+	
+end
+
 function Zombie:takeDamage( from, amount )
 	
 	if (self:isDead()) then return end
@@ -107,9 +116,9 @@ function Zombie:thinkHardAboutLife()
 		return
 	end
 	
-	if (pldis < 360 and not player:isDead()) then
+	if (pldis < 280 and not player:isDead()) then
 		self._fsm:triggerEvent("see player")
-	elseif (pldis > 500 or player:isDead()) then
+	elseif (pldis > 450 or player:isDead()) then
 		self._fsm:triggerEvent("lost player")
 	end
 	

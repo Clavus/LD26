@@ -10,47 +10,65 @@
  </layer>
  <layer name="world_bottom" width="200" height="200">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XywmAQAwFwG3Gz03X/oszDURBkRUyA++eS3hJawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJemyBxZIuvgWeBvtsge6ZFj8CwAANX4VSDnV6EivQC5q16wO5BzU1GNToDck06wU5BzZ1GRXoDcXS/YH8i5q947ARZMzKMAcQIA
+   H4sIAAAAAAAAC+3cy27CMBAFUH6mj11L///j6opFpAgHx3YKmTlH8gpVYjGPmzThcgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABe0Vs57+V8lPP55O8Cr+arnO9yruX8PPm7AHC8mblIxiKamblIxgLIqycjyVVksc5ILbUvVxHVo/ofqX17hbObOfvX/WCvENG6zlv3gH4gg3Wdz6h7WQsWshbR1Gb81uyvfaYfiKZW01u13toH8hXYJ+TQOu9dZ5BRa53rB+jjmoNIZtez3UIkI/eiWnrLPiGDe33U0lv2CWc2e77bF0TSm6/8zwMWRzy/CGcwIxPJVUQ1YxfYJ2RkL5DZ3nfRe98zhDPam4tcpwPk1vss+56/hbMaeZZdpoL97BW4udcL9gpR7J313qklk9H7ukAb1x1ENZqz/tgtRCVnwf+Qs+BGziKD3pmvF8hAncOxXHcQzcz3nOwgovGeExxPtiKqGbVt7xBVrbbtBKh7tBP0D9G5XwV1j37XClj07gR9BXWyFlFtzX57gey2Zv/WZ3oH6mQqsrEToK5nJ+gpqJOziKw2/+0FqM9/z19BP7lq3C99iFgeAHECAA==
   </data>
  </layer>
  <objectgroup name="objects" width="200" height="200">
   <object type="Player" x="3744" y="6048"/>
-  <object type="Zombie" x="3488" y="5376"/>
-  <object type="Zombie" x="3616" y="5280"/>
-  <object type="Zombie" x="3680" y="5280"/>
-  <object type="Zombie" x="3744" y="5344"/>
-  <object type="Zombie" x="3904" y="5344"/>
-  <object type="Zombie" x="3872" y="5184"/>
-  <object type="Zombie" x="3744" y="5088"/>
-  <object type="Zombie" x="3520" y="5120"/>
-  <object type="Zombie" x="3424" y="5152"/>
-  <object type="Zombie" x="3488" y="5312"/>
-  <object type="Zombie" x="3648" y="5408"/>
-  <object type="Zombie" x="3776" y="5504"/>
-  <object type="Zombie" x="3968" y="5408"/>
-  <object type="Zombie" x="4032" y="5248"/>
-  <object type="Zombie" x="4000" y="5184"/>
-  <object type="Zombie" x="3776" y="5152"/>
-  <object type="Zombie" x="3712" y="5248"/>
-  <object type="Zombie" x="3904" y="5120"/>
-  <object type="Zombie" x="3968" y="5088"/>
-  <object type="Zombie" x="4064" y="5280"/>
-  <object type="Zombie" x="4064" y="5344"/>
-  <object type="Zombie" x="3936" y="5280"/>
-  <object type="Zombie" x="3936" y="5248"/>
-  <object type="Zombie" x="3936" y="5248"/>
+  <object type="Zombie" x="4096" y="5248"/>
+  <object type="Zombie" x="4096" y="5312"/>
   <object type="Wall" x="3808" y="6080" width="128" height="128"/>
-  <object type="Wall" x="3808" y="6272" width="128" height="128"/>
-  <object type="Wall" x="3872" y="6176" width="128" height="128"/>
   <object type="Wall" x="3904" y="5984" width="128" height="128"/>
   <object type="Wall" x="3552" y="5856" width="128" height="128"/>
   <object type="Wall" x="3584" y="6048" width="128" height="128"/>
-  <object type="Wall" x="3552" y="6240" width="128" height="128"/>
-  <object type="Wall" x="3456" y="6144" width="128" height="128"/>
+  <object type="Wall" x="3680" y="6176" width="128" height="128"/>
+  <object type="Wall" x="3808" y="5888" width="128" height="128"/>
+  <object type="Wall" x="3840" y="5600" width="128" height="128"/>
+  <object type="Wall" x="3904" y="5792" width="128" height="128"/>
+  <object type="Wall" x="3936" y="5728" width="128" height="64"/>
+  <object type="Wall" x="3776" y="5504" width="128" height="128"/>
+  <object type="Wall" x="3712" y="5408" width="128" height="128"/>
+  <object type="Wall" x="3648" y="5184" width="128" height="224"/>
+  <object type="Wall" x="3456" y="5728" width="128" height="128"/>
+  <object type="Wall" x="3392" y="5536" width="128" height="192"/>
+  <object type="Wall" x="3328" y="5312" width="128" height="224"/>
+  <object type="Wall" x="3456" y="5984" width="128" height="96"/>
+  <object type="Wall" x="3904" y="5184" width="128" height="160"/>
+  <object type="Wall" x="4000" y="5344" width="128" height="352"/>
+  <object type="Wall" x="3968" y="5120" width="128" height="96"/>
+  <object type="Wall" x="3392" y="5184" width="128" height="128"/>
+  <object type="Wall" x="3488" y="4832" width="128" height="96"/>
+  <object type="Wall" x="3392" y="4928" width="128" height="192"/>
+  <object type="Wall" x="3424" y="5120" width="128" height="96"/>
+  <object type="Wall" x="3712" y="4928" width="128" height="256"/>
+  <object type="Wall" x="3808" y="4704" width="128" height="224"/>
+  <object type="Wall" x="4032" y="5024" width="128" height="96"/>
+  <object type="Wall" x="4160" y="4960" width="128" height="96"/>
+  <object type="Wall" x="3584" y="4640" width="128" height="192"/>
+  <object type="Wall" x="3552" y="4512" width="128" height="128"/>
+  <object type="Wall" x="3424" y="4480" width="128" height="128"/>
+  <object type="Wall" x="3872" y="4288" width="128" height="128"/>
+  <object type="Wall" x="3840" y="4480" width="128" height="128"/>
+  <object type="Wall" x="3904" y="4576" width="128" height="128"/>
+  <object type="Wall" x="3904" y="4384" width="128" height="128"/>
+  <object type="Wall" x="3296" y="4384" width="128" height="128"/>
+  <object type="Zombie" x="3712" y="4288"/>
+  <object type="Trigger" x="3712" y="4704" width="96" height="64">
+   <properties>
+    <property name="param1" value="spacebar"/>
+    <property name="type" value="speech"/>
+   </properties>
+  </object>
+  <object type="Trigger" x="3712" y="6016" width="96" height="64">
+   <properties>
+    <property name="param1" value="arrowkeys"/>
+    <property name="type" value="speech"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="world" width="200" height="200">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YMRKCQBAEQDKVTCET/f8znZTgQEmOcrurJr9sZm8YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYO2SXJNbMnZ+C5zNPXkkUzJ3fguczTNZklfy7vwWAP6TWwXa3CpU9G0vuFWoaKsXbCqq2+oFm4pqfukEm4pqjnSCnUUVRzrBzqIif1fQttcLdhWV7fWCXQVtdhUA9PEBkmUe7wBxAgA=
+   H4sIAAAAAAAAC+3cu47DIBAF0HT76PbR7eP/P3NJt0IGjwlS4uEciSZWpBTDcHGMLxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmOOpjOcyXsp4vfNvgUfzVsZ7GR9lfN75t8Cj+Srju4yfMn7v/Ftglpm5SMYim5m5SMYim5m5SMYiu5GMJFexijojRWpfriKruv7rjBSp/Vausq5wdnv1f2RPUc8H6wpnt1X/dZ1H14F6Ptivk1Fd59F1oDcfZC2yqOt8ZB2Qtcim1eN7vb91TdYim1aP7/X+1rV6PshXnF2rx/d6f3QeyFdkEu330X2GfEUm0X5vn8GKonXuni6rmF3P9hxkEq3nrXm09Zl7WGQSzVRb8ygyt6wnnFm0v2/No8hzXPbunNlovvKfBysYzVf+82AVkYy19/yifThZzchEchVZzfi/T64io73633t3g1xFZkfPoo+eM4QzOpqLZpwzhEc3+iz7ke/CWY0+y37ku3BWtzzL7t1w0Lc1F6wrZHG010fO1Nqrk8XRXu9MLSu59b7uf/YdZHVrzrqy7yCrW3PWlaxFVnIWzCdnsYLRni9nsYLRnm8usIIZdW7fQTYzzznZd5DNzHNOshbZzDrnJFuR1Yzalq3IqlXbR+aNbEVWrdreWxNkKrLr1fjemiBTkd3ee616ZCqy23uvVZSsxQpG1wRZi6x6vd97d1ldr/f3rslUrKDX+3vXZCpW4/4VtI2sCXIWqxhZE+QsMmv1f/euoN3/PX8F7f7v+SsYJ1cBwH38Ab+S2bQAcQIA
   </data>
  </layer>
 </map>

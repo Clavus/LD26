@@ -12,6 +12,8 @@ require("engine/util/util")
 require("engine/util/easing")
 require("engine/util/timer")
 
+require("engine/classes/mixins/collisionresolver")
+
 require("engine/classes/vector")
 require("engine/classes/sprite")
 require("engine/classes/spritedata")
@@ -28,3 +30,6 @@ require("engine/classes/entity/entity")
 require("engine/classes/entity/camera")
 require("engine/classes/entity/player")
 require("engine/classes/entity/wall")
+require("engine/classes/entity/trigger")
+
+
