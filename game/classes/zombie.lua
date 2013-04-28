@@ -19,6 +19,8 @@ function Zombie:initialize( world )
 	self._damaged = false
 	self._dead = false
 	
+	self.sound_hurt = resource.getSound(FOLDER.ASSETS.."sound/hit1.ogg","static")
+	
 	self._animstate = "movedown"
 	self._charsprite:setState(self._animstate)
 	
@@ -80,6 +82,8 @@ function Zombie:takeDamage( from, amount )
 	if (self.hp == 0) then
 		self:die()
 	end
+	
+	self.sound_hurt:play()
 	
 	self._damaged = true
 	timer.simple(0.4, function(self) self._damaged = false end, self)

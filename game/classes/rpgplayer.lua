@@ -26,6 +26,9 @@ function RPGPlayer:initialize( world )
 	self.exp = 0
 	self.lvl = 0
 	
+	self.sound_attack = resource.getSound(FOLDER.ASSETS.."sound/sword1.ogg","static")
+	self.sound_hurt = resource.getSound(FOLDER.ASSETS.."sound/hurt1.ogg","static")
+	
 	-- gui elements for character
 	local guisize = resource.getImageDimensions(FOLDER.ASSETS.."gui_front.png")
 	local pl = self
@@ -98,6 +101,8 @@ function RPGPlayer:takeDamage( from )
 			self:die()
 		end
 		
+		self.sound_hurt:play()
+		
 		self._damaged = true
 		timer.simple(0.7, function(self) self._damaged = false end, self)
 		
@@ -158,6 +163,8 @@ function RPGPlayer:attack()
 	
 	self._charsprite:setState(self._animstate, true)
 	self._charsprite:setSpeed(1)
+	
+	self.sound_attack:play()
 	
 	local world = level:getPhysicsWorld()
 	local pos = self:getPos()
