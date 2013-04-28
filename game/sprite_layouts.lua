@@ -33,5 +33,13 @@ SPRITELAYOUT["effect_attack"] = {
 
 SPRITELAYOUT["speechbubble"] = {
 	{ state_name = "restart", num_columns = 1, num_frames = 1, offset = Vector(0,0), fps = 0, loops = false },
-	{ state_name = "arrowkeys", num_columns = 1, num_frames = 1, offset = Vector(0,BUBBLE_FRAME_SIZE), fps = 0, loops = false }
+	{ state_name = "arrowkeys", num_columns = 1, num_frames = 1, offset = Vector(0,BUBBLE_FRAME_SIZE), fps = 0, loops = false },
+	{ state_name = "spacebar", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE, 0), fps = 0, loops = false },
+	{ state_name = "daughter", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE,BUBBLE_FRAME_SIZE), fps = 0, loops = false },
+	{ state_name = "kitty", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*2, 0), fps = 0, loops = false },
+	{ state_name = "help", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*2,BUBBLE_FRAME_SIZE), fps = 0, loops = false },
+	{ state_name = "hero", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*3,0), fps = 0, loops = false },
+	{ state_name = "thanks", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*3,BUBBLE_FRAME_SIZE), fps = 0, loops = false },
+	{ state_name = "deliver", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE,BUBBLE_FRAME_SIZE*3), fps = 0, loops = false },
+	{ state_name = "obstacle", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*2,BUBBLE_FRAME_SIZE*3), fps = 0, loops = false }
 }

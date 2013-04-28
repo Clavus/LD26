@@ -5,7 +5,7 @@
  </tileset>
  <layer name="background" width="200" height="200">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3dsW7DIBiFUVJ1TDu2ff8njTxYYPB15CpqkXyGs7N8+sFE5FZKuQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwUh8n/Pda4S+daUMfXMnZNvTBVfymDX1wFdqATB+QaQOe0wc8pw3ItAHH7qV28TnBemAmbR+L9wnWBLPo+zBDoOr7MEOg+ipjH2YIVBqBY30j+oAt33oh0wdk+oCsPYPoA0brDNEHjNY+fiZYC8xm6cPsgNFbMTsgMTtg3zo79AFbaxv6gJF7QdjXzo7v4mwOK/sqyOyrYF87O9x5wJbZAZk+INMHZPqArO3D2Rwq9x6Q2VtBpg/Y198L6gOq/j1qZ3Oo7K0g0wdk+oBMH5D1/2Pgv6JgywyBTB+QeacdjnmnHTJ9QNbusXzDgpEZAln7HcsMga1lj7W8KaoRyOyzIHNWh2NmCGTO6pD5zQkcs8eCTB+Q6QMyfUCmD8j0AZk+INMHZPqATB+Q6QMyfUCmj9d6AHvyltIAcQIA
+   H4sIAAAAAAAAC+3dy2qEQBRFUTvJMMkwyf9/aVpE6qFHFBoRXIM1d7K5t1qpfgzD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgpd6e3nf4uMCzwpnGNr52+r7A88JZjrShD+7kaBujvws8N5zhczA7IDnah9nBnfw8/Q5mB2zZ04nZwd2lfUsbMM0RbUBWzxBnDmj1O5bvSaDo+zBDoFg7o5shMFk7o5shUGgEtvWN6ANafuuFTB+Q6QOy+gyiD1iaZ4g+YGnuw3eKsDT2YXbA0nx/g9kBS2YHrJtnhz6gVd+LpQ9oeS8I6+rZMd5p4mwOE3sVZPYqWNffVW2vgsLsgEwfkOkDMn1AVvfhbA6F9x6Q2a0g0wes698L6gOK/j5qZ3Mo7FaQ6QMyfUCmD8j6/zHwX1HQMkMg0wdk7mmHbe5ph0wfkNU7lt+wYMkMgaz+HcsMgda4Y413imoEMnsWZM7qsM0MgcxZHTLfnMA2OxZk+oBMH5DpAzJ9QKYPyPQBmT4g0wdk+oBMH5DpAzJ9vNY/EtW6EABxAgA=
   </data>
  </layer>
  <layer name="world_bottom" width="200" height="200">
@@ -52,8 +52,8 @@
   <object type="Wall" x="3904" y="4576" width="128" height="128"/>
   <object type="Wall" x="3904" y="4384" width="128" height="128"/>
   <object type="Wall" x="3296" y="4384" width="128" height="128"/>
-  <object type="Zombie" x="3712" y="4288"/>
-  <object type="Trigger" x="3712" y="4704" width="96" height="64">
+  <object type="Zombie" x="3648" y="4192"/>
+  <object type="Trigger" x="3712" y="4608" width="96" height="64">
    <properties>
     <property name="param1" value="spacebar"/>
     <property name="param2" value="5"/>
@@ -67,6 +67,7 @@
     <property name="type" value="speech"/>
    </properties>
   </object>
+  <object type="Zombie" x="3808" y="4128"/>
  </objectgroup>
  <layer name="world" width="200" height="200">
   <data encoding="base64" compression="gzip">

@@ -49,6 +49,12 @@ function SpeechBubble:draw()
 	
 end
 
+function SpeechBubble:getDrawLayer()
+	
+	return DRAW_LAYER_TOP
+	
+end
+
 function SpeechBubble:attachTo( other )
 	
 	self._attached = other

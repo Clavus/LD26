@@ -39,6 +39,13 @@ function Entity:onRemove()
 
 end
 
+-- gets the layer name where this entity is drawn BEFORE
+function Entity:getDrawLayer()
+
+	return "world"
+	
+end
+
 function Entity:getDepth()
 	
 	return -self:getPos().y + self._relative_depth

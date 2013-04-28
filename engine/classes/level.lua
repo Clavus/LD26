@@ -17,7 +17,7 @@ function Level:initialize( leveldata )
 	self._entManager = EntityManager()
 	self._entManager:loadLevelObjects(self, objects)
 	
-	self._entitydrawindex = nil
+	self._layerindices = {}
 	self._activetiles = {}
 	
 	self:updateActiveTiles()
@@ -46,10 +46,8 @@ function Level:updateActiveTiles()
 		local index = 1
 		
 		for k, layer in ipairs( self._leveldata:getLayers() ) do
-			-- draw all entities before the world layer
-			if (self._entitydrawindex == nil and layer.name == "world") then
-				self._entitydrawindex = index
-			end
+			-- store indices where layers transition
+			self._layerindices[index] = layer.name
 		
 			for i, tile in ipairs(layer.tiles) do
 				local _, _, vww, vwh = tile.draw_quad:getViewport()
@@ -59,11 +57,6 @@ function Level:updateActiveTiles()
 					index = index + 1
 				end
 			end	
-		end
-		
-		-- if we didn't encounter the world layer, just add it at the end
-		if (self._entitydrawindex == nil) then
-			self._entitydrawindex = index
 		end
 		
 		--print("num active tiles: "..#self._activetiles)
@@ -76,12 +69,13 @@ end
 function Level:draw()
 
 	self._camera:preDraw()
+	self._entManager:preDraw()
 	
 	for k, tile in ipairs(self._activetiles) do
 		
 		-- draw all entities before the world layer
-		if (k == self._entitydrawindex) then
-			self._entManager:draw()
+		if (self._layerindices[k]) then
+			self._entManager:draw(self._layerindices[k])
 		end
 	
 		local _, _, vww, vwh = tile.draw_quad:getViewport()
@@ -91,11 +85,7 @@ function Level:draw()
 		end
 	end
 	
-	-- draw if we didn't draw it before
-	if (self._entitydrawindex > #self._activetiles) then
-		self._entManager:draw()
-	end
-	
+	self._entManager:postDraw()
 	self._camera:postDraw()
 	
 end
