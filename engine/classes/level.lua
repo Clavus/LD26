@@ -8,7 +8,6 @@ function Level:initialize( leveldata )
 	
 	love.physics.setMeter(1)
     self._physworld = love.physics.newWorld(0, 0, false)
-	self._physworld:setCallbacks(self._beginContact, self._endContact, self._preSolve, self._postSolve)
 	
 	local objects = nil
 	if (leveldata) then
@@ -125,20 +124,8 @@ function Level:getEntitiesByClass( class )
 	
 end
 
-function Level._beginContact(a, b, contact)
+function Level:setCollisionCallbacks( beginContact, endContact, preSolve, postSolve )
 	
-	print("begin contact "..tostring(a:getUserData()).." -> "..tostring(b:getUserData()))
+	self._physworld:setCallbacks( beginContact, endContact, preSolve, postSolve )
 	
-end
-
-function Level._endContact(a, b, contact)
-
-end
-
-function Level._preSolve(a, b, contact)
-
-end
-
-function Level._postSolve(a, b, contact, normal, impulse)
-
 end

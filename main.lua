@@ -4,10 +4,11 @@ engine = {}
 require("engine/engine")
 require("game/game")
 
-local _curTime = 0
+local _curTime
 
 function love.load()
 	
+	_curTime = 0
 	input = InputController()
 	game.load()
 	
@@ -16,6 +17,7 @@ end
 function love.update( dt )
 	
 	_curTime = _curTime + dt
+	timer.check()
 	game.update( dt )
 	input:clear()
 	

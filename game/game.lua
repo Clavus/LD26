@@ -12,7 +12,8 @@ function game.load()
 	
 	gui = GUI()
 	level = Level(TiledLevelData(FOLDER.ASSETS.."area1"))
-	
+	level:setCollisionCallbacks(game.collisionBeginContact, game.collisionEndContact, game.collisionPreSolve, game.collisionPostSolve)
+
 	local pls = level:getEntitiesByClass(Player)
 	player = pls[1]
 	
@@ -78,3 +79,29 @@ function game.createLevelEntity( level, entData )
 	end
 	
 end
+
+function game.collisionBeginContact(a, b, contact)
+	
+	--print("begin contact "..tostring(a:getUserData()).." -> "..tostring(a:getUserData()))
+	local ao, bo = a:getUserData(), b:getUserData()
+	
+	if (instanceOf(Zombie, ao) and instanceOf(RPGPlayer, bo)) then
+		ao:attackPlayer(bo)
+	elseif (instanceOf(Zombie, bo) and instanceOf(RPGPlayer, ao)) then
+		bo:attackPlayer(ao)
+	end
+	
+end
+
+function game.collisionEndContact(a, b, contact)
+
+end
+
+function game.collisionPreSolve(a, b, contact)
+
+end
+
+function game.collisionPostSolve(a, b, contact)
+
+end
+

@@ -1,6 +1,5 @@
 
 Player = class("Player", Entity)
-Player:include(IsPhysicsObject)
 
 function Player:initialize( world )
 	

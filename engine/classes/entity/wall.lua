@@ -1,6 +1,5 @@
 
 Wall = class("Wall", Entity)
-Wall:include(IsPhysicsObject)
 
 function Wall:initialize( world )
 

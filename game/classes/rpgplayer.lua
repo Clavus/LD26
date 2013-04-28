@@ -18,6 +18,9 @@ function RPGPlayer:initialize( world )
 	self._charsprite:setState(self._animstate)
 	self._attackeffect_offset = Vector(0,0)
 	
+	self._damaged = false
+	self._dead = false
+	
 	self.hp = 100
 	self.mana = 100
 	self.exp = 0
@@ -45,18 +48,22 @@ function RPGPlayer:update( dt )
 	
 	self._charsprite:update(dt)
 	
-	if (self.last_attack > engine.currentTime() - attack_duration) then
-		-- attacking
-		self._attackeffect:update(dt)
-	elseif (input:keyIsPressed(INPUT.ATTACK)) then
-		self:attack()
-	else
-		self.is_attacking = false
-		self:handleMovement()
-	end
+	if (not self:isDead()) then
 	
-	if (self.velocity:length() > 0) then
-		self:setPos( self:getPos() + (self.velocity * dt) )
+		if (self.last_attack > engine.currentTime() - attack_duration) then
+			-- attacking
+			self._attackeffect:update(dt)
+		elseif (input:keyIsPressed(INPUT.ATTACK)) then
+			self:attack()
+		else
+			self.is_attacking = false
+			self:handleMovement()
+		end
+		
+		if (self.velocity:length() > 0) then
+			self:setPos( self:getPos() + (self.velocity * dt) )
+		end
+		
 	end
 	
 end
@@ -65,11 +72,51 @@ function RPGPlayer:draw()
 	
 	local pos = self:getPos()
 	pos:snap(Vector(1,1))
+	
+	if (self._damaged and math.floor((engine.currentTime() * 10) % 2) == 1) then
+		love.graphics.setColor(200,100,100,255)
+	end
+	
 	self._charsprite:draw(pos.x, pos.y)
+	love.graphics.setColor(255,255,255,255)
 	
 	if (self.is_attacking) then
 		self._attackeffect:draw(pos.x + self._attackeffect_offset.x, pos.y + self._attackeffect_offset.y)
 	end
+	
+end
+
+function RPGPlayer:takeDamage( from )
+
+	if (instanceOf(Zombie, from)) then
+		
+		self.hp = math.max(0, self.hp - 25)
+		if (self.hp == 0) then
+			self:die()
+		end
+		
+		self._damaged = true
+		timer.simple(0.7, function(self) self._damaged = false end, self)
+		
+	end
+
+
+end
+
+function RPGPlayer:die()
+	
+	self._dead = true
+	self._animstate = "death"
+	self._charsprite:setState("death", false)
+	self._charsprite:setSpeed(1)
+	
+	self._attackeffect:resetAnimation()
+	
+end
+
+function RPGPlayer:isDead()
+	
+	return self._dead
 	
 end
 
@@ -101,6 +148,7 @@ function RPGPlayer:attack()
 	
 	self._charsprite:setState(self._animstate, true)
 	self._charsprite:setSpeed(1)
+	
 	self.velocity.x = 0
 	self.velocity.y = 0
 		

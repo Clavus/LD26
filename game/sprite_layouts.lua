@@ -10,7 +10,8 @@ SPRITELAYOUT["character"] = {
 	{ state_name = "attackdown", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,0), fps = 24, loops = false },
 	{ state_name = "attackright", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,CHARACTER_FRAME_SIZE), fps = 24, loops = false },
 	{ state_name = "attackleft", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,CHARACTER_FRAME_SIZE*2), fps = 24, loops = false },
-	{ state_name = "attackup", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,CHARACTER_FRAME_SIZE*3), fps = 24, loops = false }
+	{ state_name = "attackup", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,CHARACTER_FRAME_SIZE*3), fps = 24, loops = false },
+	{ state_name = "death", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*8,0), fps = 12, loops = false }
 }
 
 SPRITELAYOUT["zombie"] = {

@@ -54,9 +54,9 @@ function Zombie:thinkHardAboutLife()
 	local pldis = player:getPos():distance(self:getPos())
 	local prev_state = self._fsm:getState()
 	
-	if (pldis < 360) then
+	if (pldis < 360 and not player:isDead()) then
 		self._fsm:triggerEvent("see player")
-	elseif (pldis > 500) then
+	elseif (pldis > 500 or player:isDead()) then
 		self._fsm:triggerEvent("lost player")
 	end
 	
@@ -117,6 +117,15 @@ function Zombie:thinkHardAboutLife()
 		
 	end
 		
+end
+
+function Zombie:attackPlayer( pl )
+	
+	if (self._fsm:getState() ~= "attack" or self.last_attack > engine.currentTime() - 1) then return end
+	
+	self.last_attack = engine.currentTime()
+	pl:takeDamage( self )
+	
 end
 
 function Zombie:setPos( vec )
