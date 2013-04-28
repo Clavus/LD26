@@ -50,7 +50,7 @@ function RPGPlayer:initialize( world )
 		love.graphics.rectangle("fill", pos.x + 4, pos.y + 40, math.ceil(86*pl.exp/100), 14)
 		love.graphics.setColor( 255, 255, 255, 255 )
 	end)
-	
+		
 end
 
 function RPGPlayer:update( dt )
@@ -128,7 +128,7 @@ function RPGPlayer:die()
 	
 	timer.simple(1, function(self)
 		local ent = level:createEntity("SpeechBubble", "restart")
-		ent:setPos(self:getPos() + Vector(-8,-32))
+		ent:attachTo(self)
 	end, self)
 	
 	self._attackeffect:resetAnimation()
@@ -178,6 +178,7 @@ function RPGPlayer:attack()
 	world:rayCast( pos.x, pos.y, attackvec.x, attackvec.y, function(f, x, y, xn, yn, frac)
 		local hit = f:getUserData()
 		if (instanceOf(Zombie, hit)) then hit:takeDamage(self, 50) return 0
+		elseif (instanceOf(Obstacle, hit)) then hit:destroy() return 0
 		else return 1 end
 	end)
 	

@@ -7,8 +7,11 @@ require("game/classes/rpgplayer")
 require("game/classes/zombie")
 require("game/classes/speechbubble")
 require("game/classes/npc")
+require("game/classes/obstacle")
+require("game/classes/zombiespawn")
 
-local camera_margin = 64
+local camera_margin = 128
+local copout_img
 
 function game.load()
 	
@@ -21,6 +24,8 @@ function game.load()
 	game.initCamera()
 	
 	input:addKeyReleaseCallback("restart", "r", function() love.load() end)
+	
+	copout_img = resource.getImage(FOLDER.ASSETS.."copout.png")
 	
 	print("Game initialized")
 	
@@ -96,8 +101,19 @@ function game.handleTrigger( other, contact, trigger_type, ...)
 	if (instanceOf(RPGPlayer, other)) then
 		
 		if (trigger_type == "speech") then
+		
 			local ent = level:createEntity("SpeechBubble", params[1], tonumber(params[2]))
 			ent:attachTo(other)
+			
+		elseif (trigger_type == "zombies") then
+		
+			for k, spawn in pairs( level:getEntitiesByClass(ZombieSpawn) ) do
+				spawn:enable()
+				gui:addDynamicElement(-10, Vector(0,0), function(pos)
+					love.graphics.draw(copout_img, pos.x, pos.y, 0, 2, 2)
+				end)
+			end
+			
 		end
 		
 		return true
@@ -139,6 +155,16 @@ function game.createLevelEntity( level, entData )
 		end
 		
 		ent = level:createEntity(entData.type, level:getPhysicsWorld(), sc)
+		ent:setPos(Vector(entData.x, entData.y))
+		
+	elseif entData.type == "Obstacle" then
+		
+		ent = level:createEntity(entData.type, level:getPhysicsWorld())
+		ent:setPos(Vector(entData.x, entData.y))
+		
+	elseif entData.type == "ZombieSpawn" then
+		
+		ent = level:createEntity(entData.type, level:getPhysicsWorld())
 		ent:setPos(Vector(entData.x, entData.y))
 		
 	end

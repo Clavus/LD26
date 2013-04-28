@@ -51,7 +51,7 @@ function Sprite:update( dt )
 			end
 		elseif (self._cur_frame < 1) then
 			if (self._loops) then
-				self._cur_frame = self._num_frames + 1 + self._cur_frame 
+				self._cur_frame = self._num_frames + 1 + self._cur_frame
 			else
 				self._cur_frame = self._num_frames
 				self._ended = true

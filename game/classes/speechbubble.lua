@@ -10,8 +10,7 @@ function SpeechBubble:initialize( stype, duration )
 	
 	self._relative_depth = -100
 	
-	duration = duration or -1
-	self._duration = duration
+	self._duration = duration or -1
 	self._start = engine.currentTime()
 	
 	self._hscale = 0
@@ -31,7 +30,7 @@ function SpeechBubble:update( dt )
 		self:setPos( self._attached:getPos() + Vector(0,-32) )
 	end
 	
-	if (duration ~= -1) then
+	if (self._duration ~= -1) then
 		if (self._start + self._duration < engine.currentTime()) then
 			level:removeEntity(self)
 		end
@@ -45,6 +44,8 @@ end
 function SpeechBubble:draw()
 	
 	local pos = self:getPos()
+	pos:snap(Vector(1,1))
+	
 	self._spr:draw(pos.x, pos.y, 0, 1, self._hscale)
 	
 end

@@ -29,8 +29,8 @@ SPRITELAYOUT["npc"] = {
 	{ state_name = "moveright", num_columns = 4, num_frames = 4, offset = Vector(0,CHARACTER_FRAME_SIZE), fps = 6, loops = true },
 	{ state_name = "moveleft", num_columns = 4, num_frames = 4, offset = Vector(0,CHARACTER_FRAME_SIZE*2), fps = 6, loops = true },
 	{ state_name = "moveup", num_columns = 4, num_frames = 4, offset = Vector(0,CHARACTER_FRAME_SIZE*3), fps = 6, loops = true },
-	{ state_name = "sad", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,0), fps = 6, loops = false },
-	{ state_name = "happy", num_columns = 4, num_frames = 4, offset = Vector(CHARACTER_FRAME_SIZE*4,CHARACTER_FRAME_SIZE), fps = 6, loops = false }
+	{ state_name = "sad", num_columns = 4, num_frames = 8, offset = Vector(CHARACTER_FRAME_SIZE*4,0), fps = 6, loops = false },
+	{ state_name = "happy", num_columns = 4, num_frames = 8, offset = Vector(CHARACTER_FRAME_SIZE*4,CHARACTER_FRAME_SIZE*2), fps = 6, loops = false }
 }
 
 SPRITELAYOUT["effect_attack"] = {
@@ -49,6 +49,6 @@ SPRITELAYOUT["speechbubble"] = {
 	{ state_name = "help", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*2,BUBBLE_FRAME_SIZE), fps = 0, loops = false },
 	{ state_name = "hero", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*3,0), fps = 0, loops = false },
 	{ state_name = "thanks", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*3,BUBBLE_FRAME_SIZE), fps = 0, loops = false },
-	{ state_name = "deliver", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE,BUBBLE_FRAME_SIZE*3), fps = 0, loops = false },
-	{ state_name = "obstacle", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*2,BUBBLE_FRAME_SIZE*3), fps = 0, loops = false }
+	{ state_name = "deliver", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE,BUBBLE_FRAME_SIZE*2), fps = 0, loops = false },
+	{ state_name = "obstacle", num_columns = 1, num_frames = 1, offset = Vector(BUBBLE_FRAME_SIZE*2,BUBBLE_FRAME_SIZE*2), fps = 0, loops = false }
 }

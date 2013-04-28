@@ -35,7 +35,6 @@ end
 function Zombie:update(dt)
 	
 	self._charsprite:update(dt)
-	self:thinkHardAboutLife()
 	
 	if (self._dead) then
 		self._charsprite:setSpeed(1)
@@ -48,6 +47,8 @@ function Zombie:update(dt)
 			self._charsprite:setSpeed(0)
 		end
 	end
+	
+	self:thinkHardAboutLife()
 	
 end
 
@@ -209,7 +210,6 @@ end
 function Zombie:onRemove()
 	
 	self._body:destroy()
-	self._fixture:destroy()
 	
 end
 

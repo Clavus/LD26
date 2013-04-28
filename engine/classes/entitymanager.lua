@@ -44,6 +44,8 @@ end
 function EntityManager:removeEntity( ent )
 	
 	table.removeByValue(self._entities, ent)
+	ent:onRemove()
+	
 	self._update_drawlist = true
 	
 end
