@@ -5,7 +5,7 @@ function SpeechBubble:initialize( stype )
 	
 	Entity.initialize( self )
 	
-	self._spr = StateAnimatedSprite( SPRITELAYOUT["speechbubble"], FOLDER.ASSETS.."bubbles64.png", Vector(0,0), Vector(64,64), Vector(64,64) )
+	self._spr = StateAnimatedSprite( SPRITELAYOUT["speechbubble"], FOLDER.ASSETS.."bubbles128.png", Vector(0,0), Vector(128,128), Vector(128,128) )
 	self._spr:setState( stype )
 	
 	self._relative_depth = -100

@@ -2,7 +2,9 @@
 Wall = class("Wall", Entity)
 
 function Wall:initialize( world )
-
+	
+	Entity.initialize(self)
+	
 	self._body = love.physics.newBody(world, 0, 0, "static")
 
 end
@@ -30,11 +32,13 @@ function Wall:buildFromPolygon(pol)
 	
 end
 
+--[[
 function Wall:draw()
 	
 	love.graphics.line(self._body:getWorldPoints(self._shape:getPoints()))
 	
 end
+]]--
 
 function Wall:setPos( vec )
 
